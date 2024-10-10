@@ -1,0 +1,58 @@
+name: Android Testing Deploy Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: main_deploy
+  cancel-in-progress: true
+
+jobs:
+  build_and_release_apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+      - uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'zulu'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - name: Install Fastlane
+        run: gem install fastlane -NV
+      - name: Apply Google Services Patch
+        run: git apply ./scripts/enable-android-google-services.patch
+      - name: Remove Emoji Font
+        run: |
+          rm -rf fonts/NotoEmoji
+          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
+      - run: flutter pub get
+      - name: Prepare Android Release Build
+        env:
+          FDROID_KEY: ${{ secrets.FDROID_KEY }}
+          FDROID_KEY_PASS: ${{ secrets.FDROID_KEY_PASS }}
+        run: ./scripts/prepare-android-release.sh
+      - name: Build Android Release APK
+        run: flutter build apk --release
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: build/app/outputs/flutter-apk/app-release.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

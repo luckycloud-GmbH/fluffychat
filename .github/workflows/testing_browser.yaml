@@ -1,0 +1,38 @@
+name: Browser Testing Deploy Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: main_deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy_web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+      - name: Remove Emoji Font
+        run: |
+          rm -rf fonts/NotoEmoji
+          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
+      - run: flutter pub get
+      - name: Prepare web
+        run: ./scripts/prepare-web.sh
+      - name: Build Release Web
+        run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/nightly/"
+      - run: mv build/web/ public
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
+          # destination_dir: nightly

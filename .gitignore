@@ -60,3 +60,4 @@ ios/Runner.ipa
 /macos/out
 .vs
 olm
+config.json
