@@ -22,7 +22,7 @@ jobs:
           distribution: 'zulu'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version: 3.19.6 # Workaround for not working on 3.22
           cache: true
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
