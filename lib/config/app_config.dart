@@ -27,7 +27,7 @@ abstract class AppConfig {
       'https://github.com/krille-chan/fluffychat/wiki/How-to-use-end-to-end-encryption-in-FluffyChat';
   static const String startChatTutorial =
       'https://github.com/krille-chan/fluffychat/wiki/How-to-Find-Users-in-FluffyChat';
-  static const String appId = 'im.fluffychat.FluffyChat';
+  static const String appId = 'de.luckycloud.luckychat';
   static const String appOpenUrlScheme = 'im.fluffychat';
   static String _webBaseUrl = 'https://fluffychat.im/web';
   static String get webBaseUrl => _webBaseUrl;
@@ -59,10 +59,10 @@ abstract class AppConfig {
   static const String inviteLinkPrefix = 'https://matrix.to/#/';
   static const String deepLinkPrefix = 'im.fluffychat://chat/';
   static const String schemePrefix = 'matrix:';
-  static const String pushNotificationsChannelId = 'fluffychat_push';
+  static const String pushNotificationsChannelId = 'luckychat_push';
   static const String pushNotificationsAppId = 'de.luckycloud.luckychat';
   static const String pushNotificationsGatewayUrl =
-      'https://push.fluffychat.im/_matrix/push/v1/notify';
+      'https://sygnal.dev.etke.host/_matrix/push/v1/notify';
   static const String pushNotificationsPusherFormat = 'event_id_only';
   static const String emojiFontName = 'Noto Emoji';
   static const String emojiFontUrl =
