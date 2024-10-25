@@ -1,10 +1,7 @@
 name: Browser Testing Deploy Workflow
 
-#on:
-#  push:
-#    branches:
-#      - main
-#  workflow_dispatch:
+on: workflow_dispatch
+
 
 concurrency:
   group: main_deploy
