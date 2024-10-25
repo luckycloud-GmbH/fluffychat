@@ -17,21 +17,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        # Checks and downloads project source code from GitHub repository
 
       - name: Setup environment variables
         run: cat .github/workflows/versions.env >> $GITHUB_ENV
-        # Load environment variables from versions.env file
 
       - name: Prepare Windows environment
         run: ./scripts/prepare-windows.ps1
         shell: pwsh
-        # Executes PowerShell script to prepare Windows environment
 
       - name: Build OLM library for Windows
         run: ./scripts/build-olm-windows.sh
         shell: bash
-        # Run the Olm compiler script for cryptography if use Matrix
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -55,9 +51,18 @@ jobs:
         run: ./scripts/build-windows.ps1
         shell: pwsh
 
+      - name: List directory contents
+        run: |
+          dir
+          dir build\windows\runner\Release
+        shell: cmd
+
       - name: Create Archive for Release
-        run: tar -czf "tawkie-windows.tar.gz" -C build/windows/runner/Release/ .
-        # Create an archive for the release and include the version in the filename
+        run: |
+          cd $env:GITHUB_WORKSPACE
+          tar -czf "tawkie-windows.tar.gz" -C "build\windows\runner\Release" .
+        shell: pwsh
+
       - name: Upload Windows Release to GitHub
         uses: actions/upload-release-asset@v1
         env:
@@ -67,4 +72,3 @@ jobs:
           asset_path: "tawkie-windows.tar.gz"
           asset_name: "tawkie-windows-${{ env.TAG }}.tar.gz"
           asset_content_type: application/gzip
-        # Upload the archive on the GitHub release page as an asset
