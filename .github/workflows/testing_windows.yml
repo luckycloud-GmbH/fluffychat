@@ -36,7 +36,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: false  # Deaktivieren des Caching, um Probleme mit gecachten Dateien auszuschließen
+          cache: false
 
       - name: Get Flutter dependencies
         run: flutter pub get
@@ -56,35 +56,45 @@ jobs:
       - name: Get tag
         id: tag
         run: |
-          echo "TAG=$(git describe --tags)" >> $GITHUB_ENV
+          echo "TAG=$(git describe --tags --always)" >> $GITHUB_ENV
         shell: bash
 
       - name: Post-build Windows operations
         run: ./scripts/build-windows.ps1
         shell: pwsh
 
-      - name: Prepare Release Directory
-        run: |
-          mkdir -p build\windows\runner\Release
-        shell: cmd
-
       - name: List directory contents
         run: |
-          dir
           dir build\windows\runner\Release
         shell: cmd
 
       - name: Create Archive for Release
         run: |
           cd $env:GITHUB_WORKSPACE
-          tar -czf "tawkie-windows.tar.gz" -C "build\windows\runner\Release" .
+          Compress-Archive -Path "build\windows\runner\Release\*" -DestinationPath "tawkie-windows.zip"
         shell: pwsh
 
-      - name: Upload Windows Release to GitHub
+      - name: Upload Windows Release as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: tawkie-windows-${{ env.TAG }}
+          path: tawkie-windows.zip
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          tag_name: ${{ env.TAG }}
+          release_name: Release ${{ env.TAG }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         with:
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: "tawkie-windows.tar.gz"
-          asset_name: "tawkie-windows-${{ env.TAG }}.tar.gz"
-          asset_content_type: application/gzip
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./tawkie-windows.zip
+          asset_name: tawkie-windows-${{ env.TAG }}.zip
+          asset_content_type: application/zip
