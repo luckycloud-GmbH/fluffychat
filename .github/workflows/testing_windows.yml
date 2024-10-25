@@ -1,7 +1,11 @@
 name: Windows testing Workflow
 
-on: workflow_dispatch
-
+on:
+  push:
+    branches:
+      - main
+      - redesign
+  workflow_dispatch:
 
 concurrency:
   group: release_workflow
