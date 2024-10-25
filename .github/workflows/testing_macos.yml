@@ -26,8 +26,16 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
 
+#      - name: Setup CocoaPods
+#        uses: maxim-lobanov/setup-cocoapods@v1
+#        with:
+#          version: latest
+
       - name: Get Flutter dependencies
         run: flutter pub get
+
+      - name: Update CocoaPods repo
+        run: pod repo update
 
       - name: Build macOS Release
         run: flutter build macos --release
@@ -58,9 +66,8 @@ jobs:
 
       - name: Upload macOS Release to GitHub Release
         uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: Tawkie-${{ env.TAG }}.dmg
           asset_name: Tawkie-macOS-${{ env.TAG }}.dmg
