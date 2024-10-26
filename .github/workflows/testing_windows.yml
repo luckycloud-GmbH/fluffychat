@@ -50,33 +50,19 @@ jobs:
         run: |
           flutter build windows --release --verbose
           echo "Build completed, checking directory structure:"
-          dir
-          dir build
-          dir build\windows
-          dir build\windows\runner
-        shell: cmd
+          dir build\windows\runner\Release
 
-      - name: Check build artifacts
-        run: |
-          echo "Checking build artifacts:"
-          dir /s /b build\windows
-        shell: cmd
-
-      - name: Get tag
-        id: tag
-        run: |
-          echo "TAG=$(git describe --tags --always)" >> $GITHUB_ENV
-        shell: bash
-
-      - name: Post-build Windows operations
-        run: ./scripts/build-windows.ps1
-        shell: pwsh
+      - name: Upload Windows executable
+        uses: actions/upload-artifact@v3
+        with:
+          name: fluffychat-windows-exe
+          path: build\windows\runner\Release\fluffychat.exe
 
       - name: Create Archive for Release
         run: |
           $releaseDir = "build\windows\runner\Release"
           if (Test-Path $releaseDir) {
-            Compress-Archive -Path "$releaseDir\*" -DestinationPath "tawkie-windows.zip"
+            Compress-Archive -Path "$releaseDir\*" -DestinationPath "fluffychat-windows.zip"
             echo "Archive created successfully"
           } else {
             echo "Error: Release directory not found"
@@ -87,9 +73,8 @@ jobs:
       - name: Upload Windows Release as Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: tawkie-windows-${{ env.TAG }}
-          path: tawkie-windows.zip
-          if-no-files-found: error
+          name: fluffychat-windows-${{ env.TAG }}
+          path: fluffychat-windows.zip
 
       - name: Create Release
         id: create_release
@@ -106,6 +91,6 @@ jobs:
         with:
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./tawkie-windows.zip
-          asset_name: tawkie-windows-${{ env.TAG }}.zip
+          asset_path: ./fluffychat-windows.zip
+          asset_name: fluffychat-windows-${{ env.TAG }}.zip
           asset_content_type: application/zip
