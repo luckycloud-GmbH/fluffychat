@@ -33,9 +33,6 @@ jobs:
       - name: Update CocoaPods repo
         run: pod repo update
 
-      - name: Update WebRTC-SDK
-        run: pod update WebRTC-SDK
-
       - name: Build macOS Release
         run: flutter build macos --release
 
