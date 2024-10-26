@@ -39,18 +39,27 @@ jobs:
           cache: false
 
       - name: Get Flutter dependencies
-        run: flutter pub get
+        run: |
+          flutter pub get
+          flutter doctor -v
 
       - name: Enable Windows desktop
         run: flutter config --enable-windows-desktop
 
       - name: Build Windows Release
         run: |
-          flutter build windows --release
+          flutter build windows --release --verbose
           echo "Build completed, checking directory structure:"
+          dir
           dir build
           dir build\windows
           dir build\windows\runner
+        shell: cmd
+
+      - name: Check build artifacts
+        run: |
+          echo "Checking build artifacts:"
+          dir /s /b build\windows
         shell: cmd
 
       - name: Get tag
@@ -63,15 +72,16 @@ jobs:
         run: ./scripts/build-windows.ps1
         shell: pwsh
 
-      - name: List directory contents
-        run: |
-          dir build\windows\runner\Release
-        shell: cmd
-
       - name: Create Archive for Release
         run: |
-          cd $env:GITHUB_WORKSPACE
-          Compress-Archive -Path "build\windows\runner\Release\*" -DestinationPath "tawkie-windows.zip"
+          $releaseDir = "build\windows\runner\Release"
+          if (Test-Path $releaseDir) {
+            Compress-Archive -Path "$releaseDir\*" -DestinationPath "tawkie-windows.zip"
+            echo "Archive created successfully"
+          } else {
+            echo "Error: Release directory not found"
+            exit 1
+          }
         shell: pwsh
 
       - name: Upload Windows Release as Artifact
@@ -79,6 +89,7 @@ jobs:
         with:
           name: tawkie-windows-${{ env.TAG }}
           path: tawkie-windows.zip
+          if-no-files-found: error
 
       - name: Create Release
         id: create_release
