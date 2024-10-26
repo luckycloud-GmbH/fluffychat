@@ -27,10 +27,10 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
 
-#      - name: Setup CocoaPods
-#        uses: maxim-lobanov/setup-cocoapods@v1
-#        with:
-#          version: latest
+      - name: Setup CocoaPods
+        uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          version: latest
 
       - name: Get Flutter dependencies
         run: flutter pub get
