@@ -62,7 +62,7 @@ abstract class AppConfig {
   static const String pushNotificationsChannelId = 'luckychat_push';
   static const String pushNotificationsAppId = 'de.luckycloud.luckychat';
   static const String pushNotificationsGatewayUrl =
-      'https://sygnal.dev.etke.host/_matrix/push/v1/notify';
+      'https://sygnal1.lc-testing.de/_matrix/push/v1/notify';
   static const String pushNotificationsPusherFormat = 'event_id_only';
   static const String emojiFontName = 'Noto Emoji';
   static const String emojiFontUrl =
