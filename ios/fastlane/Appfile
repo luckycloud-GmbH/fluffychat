@@ -1,5 +1,5 @@
-app_identifier("de.luckycloud.luckychat.app") # The bundle identifier of your app
-apple_id("christian-kussowski@posteo.de") # Your Apple email address
+app_identifier("de.luckycloud.luckychat") # The bundle identifier of your app
+apple_id("appstore@luckycloud.de") # Your Apple email address
 
 itc_team_id("122628977") # App Store Connect Team ID
 team_id("6L778TJLD2") # Developer Portal Team ID
