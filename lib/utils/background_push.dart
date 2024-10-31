@@ -39,7 +39,7 @@ import '../config/setting_keys.dart';
 import '../widgets/matrix.dart';
 import 'platform_infos.dart';
 
-//<GOOGLE_SERVICES>import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class NoTokenException implements Exception {
   String get cause => 'Cannot get firebase token';
@@ -64,7 +64,7 @@ class BackgroundPush {
 
   final pendingTests = <String, Completer<void>>{};
 
-  //<GOOGLE_SERVICES>final firebase = FirebaseMessaging.instance;
+  final firebase = FirebaseMessaging.instance;
 
   DateTime? lastReceivedPush;
 
@@ -80,8 +80,8 @@ class BackgroundPush {
         onDidReceiveNotificationResponse: goToRoom,
       );
       Logs().v('Flutter Local Notifications initialized');
-      //<GOOGLE_SERVICES>FirebaseMessaging.onMessage.listen(_onFirebaseMessage);
-      //<GOOGLE_SERVICES>FirebaseMessaging.onBackgroundMessage(pushHelperBackground);
+      FirebaseMessaging.onMessage.listen(_onFirebaseMessage);
+      FirebaseMessaging.onBackgroundMessage(pushHelperBackground);
       if (Platform.isAndroid) {
         await UnifiedPush.initialize(
           onNewEndpoint: _newUpEndpoint,
@@ -139,7 +139,7 @@ class BackgroundPush {
     bool useDeviceSpecificAppId = false,
   }) async {
     if (PlatformInfos.isIOS) {
-      //<GOOGLE_SERVICES>  await firebase.requestPermission();
+        await firebase.requestPermission();
     } else if (PlatformInfos.isAndroid) {
       _flutterLocalNotificationsPlugin
           .resolvePlatformSpecificImplementation<
@@ -296,7 +296,7 @@ class BackgroundPush {
     Logs().v('Setup firebase');
     if (_fcmToken?.isEmpty ?? true) {
       try {
-        //<GOOGLE_SERVICES>_fcmToken = await firebase.getToken();
+        _fcmToken = await firebase.getToken();
         if (_fcmToken == null) throw ('PushToken is null');
       } catch (e, s) {
         Logs().w('[Push] cannot get token', e, e is String ? null : s);
@@ -367,7 +367,7 @@ class BackgroundPush {
     final oldTokens = <String?>{};
     try {
       String? fcmToken;
-      //<GOOGLE_SERVICES>fcmToken = await firebase.getToken();
+      fcmToken = await firebase.getToken();
       oldTokens.add(fcmToken);
     } catch (_) {}
     await setupPusher(

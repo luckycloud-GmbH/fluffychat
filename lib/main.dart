@@ -1,4 +1,4 @@
-//<GOOGLE_SERVICES>import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
 
@@ -23,7 +23,7 @@ void main() async {
   // widget bindings are initialized already.
   WidgetsFlutterBinding.ensureInitialized();
 
-  //<GOOGLE_SERVICES>await Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   Logs().nativeColors = !PlatformInfos.isIOS;
   final store = await SharedPreferences.getInstance();
