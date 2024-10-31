@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  fluffychat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder  # Use the builder stage to serve Flutter
+    ports:
+      - "8082:8082"  # Map port 8082 to the Flutter web server port
+    volumes:
+      - ./lib:/app/lib  # Mount the lib folder to reflect changes
+    command: >
+      sh -c "
+      flutter pub get &&
+      flutter run -d web-server --web-port 8082 --web-hostname 0.0.0.0"
+    environment:
+      - FLUTTER_WEB_CANVASKIT_URL=canvaskit/
+    restart: always
