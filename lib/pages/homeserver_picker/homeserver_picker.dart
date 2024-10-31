@@ -61,23 +61,23 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     isTorBrowser = isTor;
   }
 
-  String? _lastCheckedUrl;
+  // String? _lastCheckedUrl;
 
-  Timer? _checkHomeserverCooldown;
+  // Timer? _checkHomeserverCooldown;
 
-  tryCheckHomeserverActionWithCooldown([_]) {
-    _checkHomeserverCooldown?.cancel();
-    _checkHomeserverCooldown = Timer(
-      const Duration(milliseconds: 500),
-      checkHomeserverAction,
-    );
-  }
+  // tryCheckHomeserverActionWithCooldown([_]) {
+  //   _checkHomeserverCooldown?.cancel();
+  //   _checkHomeserverCooldown = Timer(
+  //     const Duration(milliseconds: 500),
+  //     checkHomeserverAction,
+  //   );
+  // }
 
-  tryCheckHomeserverActionWithoutCooldown([_]) {
-    _checkHomeserverCooldown?.cancel();
-    _lastCheckedUrl = null;
-    checkHomeserverAction();
-  }
+  // tryCheckHomeserverActionWithoutCooldown([_]) {
+  //   _checkHomeserverCooldown?.cancel();
+  //   _lastCheckedUrl = null;
+  //   checkHomeserverAction();
+  // }
 
   /// Starts an analysis of the given homeserver. It uses the current domain and
   /// makes sure that it is prefixed with https. Then it searches for the
@@ -95,9 +95,9 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       });
       return;
     }
-    if (_lastCheckedUrl == homeserverController.text) return;
+    // if (_lastCheckedUrl == homeserverController.text) return;
 
-    _lastCheckedUrl = homeserverController.text;
+    // _lastCheckedUrl = homeserverController.text;
     setState(() {
       error = loginFlows = null;
       isLoading = true;
@@ -121,6 +121,14 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     } finally {
       if (mounted) {
         setState(() => isLoading = false);
+      }
+    }
+
+    if (error == null && loginFlows != null) {
+      if(supportsSso) {
+        ssoLoginAction();
+      } else {
+        login();
       }
     }
   }
@@ -194,7 +202,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   void initState() {
     _checkTorBrowser();
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(checkHomeserverAction);
+    // WidgetsBinding.instance.addPostFrameCallback(checkHomeserverAction);
   }
 
   @override

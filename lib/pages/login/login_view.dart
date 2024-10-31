@@ -53,80 +53,93 @@ class LoginView extends StatelessWidget {
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextField(
-                    readOnly: controller.loading,
-                    autocorrect: false,
-                    autofocus: true,
-                    onChanged: controller.checkWellKnownWithCoolDown,
-                    controller: controller.usernameController,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
-                    autofillHints:
-                        controller.loading ? null : [AutofillHints.username],
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.account_box_outlined),
-                      errorText: controller.usernameError,
-                      errorStyle: const TextStyle(color: Colors.orange),
-                      hintText: '@username:localpart',
-                      labelText: L10n.of(context)!.emailOrUsername,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextField(
-                    readOnly: controller.loading,
-                    autocorrect: false,
-                    autofillHints:
-                        controller.loading ? null : [AutofillHints.password],
-                    controller: controller.passwordController,
-                    textInputAction: TextInputAction.go,
-                    obscureText: !controller.showPassword,
-                    onSubmitted: (_) => controller.login(),
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock_outlined),
-                      errorText: controller.passwordError,
-                      errorStyle: const TextStyle(color: Colors.orange),
-                      suffixIcon: IconButton(
-                        onPressed: controller.toggleShowPassword,
-                        icon: Icon(
-                          controller.showPassword
-                              ? Icons.visibility_off_outlined
-                              : Icons.visibility_outlined,
-                          color: Colors.black,
-                        ),
+                  child: FractionallySizedBox(
+                    widthFactor: 0.6,
+                    child: TextField(
+                      readOnly: controller.loading,
+                      autocorrect: false,
+                      autofocus: true,
+                      onChanged: controller.checkWellKnownWithCoolDown,
+                      controller: controller.usernameController,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.emailAddress,
+                      autofillHints:
+                          controller.loading ? null : [AutofillHints.username],
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.account_box_outlined),
+                        errorText: controller.usernameError,
+                        errorStyle: const TextStyle(color: Colors.orange),
+                        hintText: '@username:localpart',
+                        labelText: L10n.of(context)!.emailOrUsername,
                       ),
-                      hintText: '******',
-                      labelText: L10n.of(context)!.password,
                     ),
                   ),
                 ),
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: theme.colorScheme.primary,
-                      foregroundColor: theme.colorScheme.onPrimary,
+                  child: FractionallySizedBox(
+                    widthFactor: 0.6,
+                    child: TextField(
+                      readOnly: controller.loading,
+                      autocorrect: false,
+                      autofillHints:
+                          controller.loading ? null : [AutofillHints.password],
+                      controller: controller.passwordController,
+                      textInputAction: TextInputAction.go,
+                      obscureText: !controller.showPassword,
+                      onSubmitted: (_) => controller.login(),
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.lock_outlined),
+                        errorText: controller.passwordError,
+                        errorStyle: const TextStyle(color: Colors.orange),
+                        suffixIcon: IconButton(
+                          onPressed: controller.toggleShowPassword,
+                          icon: Icon(
+                            controller.showPassword
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
+                            color: Colors.black,
+                          ),
+                        ),
+                        hintText: '******',
+                        labelText: L10n.of(context)!.password,
+                      ),
                     ),
-                    onPressed: controller.loading ? null : controller.login,
-                    child: controller.loading
-                        ? const LinearProgressIndicator()
-                        : Text(L10n.of(context)!.login),
+                  ),
+                ),
+                // if (MediaQuery.of(context).size.height > 512) const Spacer(),
+                const SizedBox(height: 64),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: FractionallySizedBox(
+                    widthFactor: 0.5,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: theme.colorScheme.primary,
+                        foregroundColor: theme.colorScheme.onPrimary,
+                      ),
+                      onPressed: controller.loading ? null : controller.login,
+                      child: controller.loading
+                          ? const LinearProgressIndicator()
+                          : Text(L10n.of(context)!.login),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextButton(
-                    onPressed: controller.loading
-                        ? () {}
-                        : controller.passwordForgotten,
-                    style: TextButton.styleFrom(
-                      foregroundColor: theme.colorScheme.error,
+                  child: FractionallySizedBox(
+                  widthFactor: 0.5,
+                    child: TextButton(
+                      onPressed: controller.loading
+                          ? () {}
+                          : controller.passwordForgotten,
+                      style: TextButton.styleFrom(
+                        foregroundColor: theme.colorScheme.error,
+                      ),
+                      child: Text(L10n.of(context)!.passwordForgotten),
                     ),
-                    child: Text(L10n.of(context)!.passwordForgotten),
                   ),
                 ),
                 const SizedBox(height: 16),

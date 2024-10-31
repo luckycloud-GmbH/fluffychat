@@ -80,7 +80,7 @@ class LoginScaffold extends StatelessWidget {
                   child: ConstrainedBox(
                     constraints: isMobileMode
                         ? const BoxConstraints()
-                        : const BoxConstraints(maxWidth: 480, maxHeight: 640),
+                        : const BoxConstraints(maxWidth: 480, maxHeight: 540),
                     child: BackdropFilter(
                       filter: ImageFilter.blur(
                         sigmaX: 10.0,
