@@ -61,7 +61,10 @@ extension InitWithRestoreExtension on Client {
     );
   }
 
-  Future<void> initWithRestore({void Function()? onMigration}) async {
+  Future<void> initWithRestore({
+    bool isBackgroundClient = false,
+    void Function()? onMigration,
+  }) async {
     final storageKey =
         '${AppConfig.applicationName}_session_backup_$clientName';
     final storage = PlatformInfos.isMobile || PlatformInfos.isLinux
@@ -69,6 +72,7 @@ extension InitWithRestoreExtension on Client {
         : null;
 
     try {
+      if (isBackgroundClient) await abortSync();
       await init(
         onMigration: onMigration,
         waitForFirstSync: false,
@@ -101,7 +105,7 @@ extension InitWithRestoreExtension on Client {
       }
     } catch (e, s) {
       Logs().wtf('Client init failed!', e, s);
-      final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+      final l10n = await lookupL10n(PlatformDispatcher.instance.locale);
       final sessionBackupString = await storage?.read(key: storageKey);
       if (sessionBackupString == null) {
         ClientManager.sendInitNotification(

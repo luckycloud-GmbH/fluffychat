@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-git apply ./scripts/enable-android-google-services.patch
+./scripts/enable-google-services.sh
 FLUFFYCHAT_ORIG_GROUP="de.luckycloud.luckychat"
 FLUFFYCHAT_ORIG_TEAM="6L778TJLD2"
 #FLUFFYCHAT_NEW_GROUP="com.example.fluffychat"
