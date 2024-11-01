@@ -15,9 +15,12 @@ abstract class AppConfig {
   static const double messageFontSize = 16.0;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
+  static const bool enableBGImage = false;
   static const Color primaryColor = Color(0xFF42D75F);
   static const Color primaryColorLight = Color(0xFFcdeaba);
   static const Color secondaryColor = Color(0xFFADADAD);
+  static const Color backgroundColor = Color(0xFF008000);
+
   static String _privacyUrl =
       'https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md';
   static String get privacyUrl => _privacyUrl;

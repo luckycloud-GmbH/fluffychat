@@ -57,11 +57,14 @@ class LoginScaffold extends StatelessWidget {
     );
     // if (isMobileMode) return scaffold;
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage('assets/login_wallpaper.png'),
-        ),
+      decoration: AppConfig.enableBGImage ?
+        const BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage('assets/login_wallpaper.png'),
+          ),
+        ) : const BoxDecoration(
+          color: AppConfig.backgroundColor,
       ),
       child: Column(
         children: [

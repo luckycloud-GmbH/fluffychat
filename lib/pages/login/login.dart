@@ -155,52 +155,98 @@ class LoginController extends State<Login> {
     }
   }
 
-  void passwordForgotten() async {
-    final input = await showTextInputDialog(
-      useRootNavigator: false,
+  Future<String?> showCustomTextInputDialog(
+      BuildContext context, String title, String hintText,
+      {bool isObscure = false}) async {
+    final textController = TextEditingController();
+
+    return await showDialog<String>(
       context: context,
-      title: L10n.of(context)!.passwordForgotten,
-      // message: L10n.of(context)!.enterAnEmailAddress,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
-      fullyCapitalizedForMaterial: false,
-      textFields: [
-        DialogTextField(
-          initialText:
-              usernameController.text.isEmail ? usernameController.text : '',
-          hintText: L10n.of(context)!.enterAnEmailAddress,
-          keyboardType: TextInputType.emailAddress,
-        ),
-      ],
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          child: SizedBox(
+            width: 300, // Set your desired width
+            height: 250, // Set your desired height
+            child: Padding(
+              padding: const EdgeInsets.all(36.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 32),
+                  TextField(
+                    controller: textController,
+                    obscureText: isObscure,
+                    decoration: InputDecoration(
+                      hintText: hintText,
+                      filled: true,
+                      fillColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+                      contentPadding: EdgeInsets.all(16.0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(34.0),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    keyboardType: isObscure
+                        ? TextInputType.visiblePassword
+                        : TextInputType.emailAddress,
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text(L10n.of(context)!.cancel),
+                      ),
+                      TextButton(
+                        onPressed: () =>
+                            Navigator.of(context).pop(textController.text),
+                        child: Text(L10n.of(context)!.ok),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+
+  void passwordForgotten() async {
+    // Custom dialog for email input
+    final input = await showCustomTextInputDialog(
+      context,
+      L10n.of(context)!.passwordForgotten,
+      L10n.of(context)!.enterAnEmailAddress,
     );
     if (input == null) return;
     final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
     final response = await showFutureLoadingDialog(
       context: context,
-      future: () =>
-          Matrix.of(context).getLoginClient().requestTokenToResetPasswordEmail(
-                clientSecret,
-                input.single,
-                sendAttempt++,
-              ),
+      future: () => Matrix.of(context)
+          .getLoginClient()
+          .requestTokenToResetPasswordEmail(clientSecret, input, sendAttempt++),
     );
     if (response.error != null) return;
-    final password = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context)!.passwordForgotten,
-      message: L10n.of(context)!.chooseAStrongPassword,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
-      fullyCapitalizedForMaterial: false,
-      textFields: [
-        const DialogTextField(
-          hintText: '******',
-          obscureText: true,
-          minLines: 1,
-          maxLines: 1,
-        ),
-      ],
+
+    // Custom dialog for password input
+    final password = await showCustomTextInputDialog(
+      context,
+      L10n.of(context)!.passwordForgotten,
+      L10n.of(context)!.chooseAStrongPassword,
+      isObscure: true,
     );
     if (password == null) return;
     final ok = await showOkAlertDialog(
@@ -213,7 +259,7 @@ class LoginController extends State<Login> {
     );
     if (ok != OkCancelResult.ok) return;
     final data = <String, dynamic>{
-      'new_password': password.single,
+      'new_password': password,
       'logout_devices': false,
       "auth": AuthenticationThreePidCreds(
         type: AuthenticationTypes.emailIdentity,
@@ -235,8 +281,8 @@ class LoginController extends State<Login> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(L10n.of(context)!.passwordHasBeenChanged)),
       );
-      usernameController.text = input.single;
-      passwordController.text = password.single;
+      usernameController.text = input;
+      passwordController.text = password;
       login();
     }
   }
