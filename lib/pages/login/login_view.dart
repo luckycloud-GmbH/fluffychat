@@ -37,13 +37,12 @@ class LoginView extends StatelessWidget {
                   padding: const EdgeInsets.only(
                     top: 64.0,
                     bottom: 16.0,
-                    left: 64.0,
-                    right: 64.0,
+                    left: 48.0,
+                    right: 48.0,
                   ),
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width < 450 ? 
-                        MediaQuery.of(context).size.width * 1 : MediaQuery.of(context).size.width * 0.6,
+                      maxWidth: MediaQuery.of(context).size.width,
                     ),
                     child: Image.asset(
                       'assets/banner_transparent.png',
@@ -55,7 +54,7 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FractionallySizedBox(
-                    widthFactor: 0.7,
+                    widthFactor: 0.8,
                     child: TextField(
                       readOnly: controller.loading,
                       autocorrect: false,
@@ -85,7 +84,7 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FractionallySizedBox(
-                    widthFactor: 0.7,
+                    widthFactor: 0.8,
                     child: TextField(
                       readOnly: controller.loading,
                       autocorrect: false,
@@ -110,7 +109,6 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (MediaQuery.of(context).size.height > 512) const Spacer(),
                 const SizedBox(height: 64),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),

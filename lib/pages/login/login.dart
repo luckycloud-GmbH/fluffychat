@@ -160,7 +160,7 @@ class LoginController extends State<Login> {
       useRootNavigator: false,
       context: context,
       title: L10n.of(context)!.passwordForgotten,
-      message: L10n.of(context)!.enterAnEmailAddress,
+      // message: L10n.of(context)!.enterAnEmailAddress,
       okLabel: L10n.of(context)!.ok,
       cancelLabel: L10n.of(context)!.cancel,
       fullyCapitalizedForMaterial: false,

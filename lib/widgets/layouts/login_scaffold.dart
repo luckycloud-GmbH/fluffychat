@@ -77,7 +77,7 @@ class LoginScaffold extends StatelessWidget {
                   elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
                   shadowColor: theme.appBarTheme.shadowColor,
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 500, maxHeight: 550),
+                    constraints: const BoxConstraints(maxWidth: 500, maxHeight: 515),
                     child: BackdropFilter(
                       filter: ImageFilter.blur(
                         sigmaX: 10.0,

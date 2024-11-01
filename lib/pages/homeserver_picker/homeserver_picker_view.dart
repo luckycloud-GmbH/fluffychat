@@ -57,13 +57,12 @@ class HomeserverPickerView extends StatelessWidget {
             padding: const EdgeInsets.only(
               top: 64.0,
               bottom: 16.0,
-              left: 64.0,
-              right: 64.0,
+              left: 48.0,
+              right: 48.0,
             ),
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width < 450 ? 
-                  MediaQuery.of(context).size.width * 1 : MediaQuery.of(context).size.width * 0.6,
+                maxWidth: MediaQuery.of(context).size.width,
               ),
               child: Image.asset(
                 'assets/banner_transparent.png',
@@ -74,7 +73,7 @@ class HomeserverPickerView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(32.0),
             child: FractionallySizedBox(
-              widthFactor: MediaQuery.of(context).size.width < 450 ? 0.9 : 0.7, // % of the parent
+              widthFactor: 0.8, // % of the parent
               child: SizedBox(
                 height: 56,
                 child: TextField(
@@ -96,12 +95,11 @@ class HomeserverPickerView extends StatelessWidget {
               ),
             ),
           ),
-          if (MediaQuery.of(context).size.height > 512) const Spacer(),
           ListView(
             shrinkWrap: true,
             padding: const EdgeInsets.symmetric(
               horizontal: 32.0,
-              vertical: 64.0,
+              vertical: 48.0,
             ),
             children: [
               FractionallySizedBox(
