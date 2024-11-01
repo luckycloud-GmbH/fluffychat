@@ -8,6 +8,13 @@
           "fileOutput": "android/app/google-services.json"
         }
       },
+      "ios": {
+        "default": {
+          "projectId": "luckychat-dev2",
+          "appId": "1:653217454232:ios:703e3b53424bfcba00d8ed",
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
       "dart": {
         "lib/firebase_options.dart": {
           "projectId": "luckychat-dev2",
