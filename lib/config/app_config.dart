@@ -10,16 +10,16 @@ abstract class AppConfig {
   static String _defaultHomeserver = 'dev.etke.host';
   static String get defaultHomeserver => _defaultHomeserver;
   static double fontSizeFactor = 1;
-  static const Color chatColor = primaryColor;
+  static Color chatColor = primaryColor;
   static Color? colorSchemeSeed = primaryColor;
   static const double messageFontSize = 16.0;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
-  static const bool enableBGImage = false;
-  static const Color primaryColor = Color(0xFF42D75F);
+  static bool enableBGImage = false;
+  static Color primaryColor = Color(0xFF42D75F);
   static const Color primaryColorLight = Color(0xFFcdeaba);
   static const Color secondaryColor = Color(0xFFADADAD);
-  static const Color backgroundColor = Color(0xFF008000);
+  static Color backgroundColor = Color(0xFF008000);
 
   static String _privacyUrl =
       'https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md';
@@ -112,6 +112,16 @@ abstract class AppConfig {
     }
     if (json['hide_unknown_events'] is bool) {
       hideUnknownEvents = json['hide_unknown_events'];
+    }
+    // custom color and bg image
+    if (json['enable_bg_image'] is bool) {
+      enableBGImage = json['enable_bg_image'];
+    }
+    if (json['primary_color'] != null) {
+      primaryColor = Color(json['primary_color']);
+    }
+    if (json['background_color'] != null) {
+      backgroundColor = Color(json['background_color']);
     }
   }
 }

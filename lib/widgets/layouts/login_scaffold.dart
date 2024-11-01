@@ -63,7 +63,7 @@ class LoginScaffold extends StatelessWidget {
             fit: BoxFit.cover,
             image: AssetImage('assets/login_wallpaper.png'),
           ),
-        ) : const BoxDecoration(
+        ) : BoxDecoration(
           color: AppConfig.backgroundColor,
       ),
       child: Column(

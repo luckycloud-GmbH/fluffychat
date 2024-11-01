@@ -16,3 +16,6 @@ RUN flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --relea
 FROM docker.io/nginx:alpine
 RUN rm -rf /usr/share/nginx/html
 COPY --from=builder /app/build/web /usr/share/nginx/html
+
+# Copy config.json to the same directory
+COPY config.json /usr/share/nginx/html/config.json

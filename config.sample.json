@@ -1,10 +1,20 @@
+// sample config.json file
+// Please serve this file as config.json at the same path as app
+// If you want to change the color, you should change hex to int value first
+// For example, 0xFF42D75F is equal to 4282570591
+// 0xFF008000 is equal to 4278222848
+// enable_bg_image is for background image, if you want to enable it, change it to true
+
 {
-  "application_name": "FluffyChat",
+  "application_name": "luckyChat",
   "application_welcome_message": null,
-  "default_homeserver": "matrix.org",
+  "default_homeserver": "dev.etke.host",
   "web_base_url": "https://fluffychat.im/web",
   "privacy_url": "https://fluffychat.im/en/privacy.html",
   "render_html": false,
   "hide_redacted_events": false,
-  "hide_unknown_events": false
+  "hide_unknown_events": false,
+  "enable_bg_image": false,
+  "primary_color": 4282570591,
+  "background_color": 4278190080
 }
