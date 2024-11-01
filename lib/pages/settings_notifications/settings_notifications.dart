@@ -102,11 +102,10 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
     });
     try {
       await Matrix.of(context).client.setPushRuleEnabled(
-            'global',
-            item.type,
-            item.key,
-            enabled,
-          );
+        item.type,
+        item.key,
+        enabled,
+      );
     } catch (e, s) {
       Logs().w('Unable to change notification settings', e, s);
       scaffoldMessenger
