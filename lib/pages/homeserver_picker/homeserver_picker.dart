@@ -61,24 +61,6 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     isTorBrowser = isTor;
   }
 
-  // String? _lastCheckedUrl;
-
-  // Timer? _checkHomeserverCooldown;
-
-  // tryCheckHomeserverActionWithCooldown([_]) {
-  //   _checkHomeserverCooldown?.cancel();
-  //   _checkHomeserverCooldown = Timer(
-  //     const Duration(milliseconds: 500),
-  //     checkHomeserverAction,
-  //   );
-  // }
-
-  // tryCheckHomeserverActionWithoutCooldown([_]) {
-  //   _checkHomeserverCooldown?.cancel();
-  //   _lastCheckedUrl = null;
-  //   checkHomeserverAction();
-  // }
-
   /// Starts an analysis of the given homeserver. It uses the current domain and
   /// makes sure that it is prefixed with https. Then it searches for the
   /// well-known information and forwards to the login page depending on the
@@ -202,7 +184,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   void initState() {
     _checkTorBrowser();
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback(checkHomeserverAction);
+    checkHomeserverAction();
   }
 
   @override

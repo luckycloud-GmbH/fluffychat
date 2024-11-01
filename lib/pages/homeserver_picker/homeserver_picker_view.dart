@@ -53,88 +53,50 @@ class HomeserverPickerView extends StatelessWidget {
               ),
             ),
           ),
-          if (MediaQuery.of(context).size.height > 512)            
-            Padding(
-              padding: const EdgeInsets.only(top: 32.0),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxHeight: MediaQuery.of(context).size.height / 4,
-                ),
-                child: Image.asset(
-                  'assets/banner_transparent.png',
-                  alignment: Alignment.center,
-                  // repeat: ImageRepeat.repeat,
-                ),
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 64.0,
+              bottom: 16.0,
+              left: 64.0,
+              right: 64.0,
+            ),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width < 450 ? 
+                  MediaQuery.of(context).size.width * 1 : MediaQuery.of(context).size.width * 0.6,
+              ),
+              child: Image.asset(
+                'assets/banner_transparent.png',
+                alignment: Alignment.center,
               ),
             ),
+          ),
           Padding(
             padding: const EdgeInsets.all(32.0),
             child: FractionallySizedBox(
-              widthFactor: 0.6, // Set width to 60% of the parent
-              child: TextField(
-                // onChanged: controller.tryCheckHomeserverActionWithCooldown,
-                // onEditingComplete:
-                //     controller.tryCheckHomeserverActionWithoutCooldown,
-                // onSubmitted: controller.tryCheckHomeserverActionWithoutCooldown,
-                // onTap: controller.tryCheckHomeserverActionWithCooldown,
+              widthFactor: MediaQuery.of(context).size.width < 450 ? 0.9 : 0.7, // % of the parent
+              child: SizedBox(
+                height: 56,
+                child: TextField(
                 controller: controller.homeserverController,
                 autocorrect: false,
                 keyboardType: TextInputType.url,
                 decoration: InputDecoration(
-                  prefixIcon: controller.isLoading
-                      ? Container(
-                          width: 16,
-                          height: 16,
-                          alignment: Alignment.center,
-                          child: const SizedBox(
-                            width: 16,
-                            height: 16,
-                            child: CircularProgressIndicator.adaptive(
-                              strokeWidth: 2,
-                            ),
-                          ),
-                        )
-                      : const Icon(Icons.search_outlined),
-                  filled: false,
+                  filled: true,
+                  fillColor: theme.colorScheme.surfaceContainerHighest,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                    borderRadius: BorderRadius.circular(34.0),
+                    borderSide: BorderSide.none,
                   ),
                   hintText: AppConfig.defaultHomeserver,
-                  labelText: L10n.of(context)!.homeserver,
                   errorText: controller.error,
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog.adaptive(
-                          title: Text(L10n.of(context)!.whatIsAHomeserver),
-                          content: Linkify(
-                            text: L10n.of(context)!.homeserverDescription,
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () => launchUrl(
-                                Uri.https('servers.joinmatrix.org'),
-                              ),
-                              child: Text(
-                                L10n.of(context)!.discoverHomeservers,
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: Navigator.of(context).pop,
-                              child: Text(L10n.of(context)!.close),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.info_outlined),
-                  ),
+                  contentPadding: const EdgeInsets.all(16.0),
                 ),
+              ),
               ),
             ),
           ),
-          // if (MediaQuery.of(context).size.height > 512) const Spacer(),
+          if (MediaQuery.of(context).size.height > 512) const Spacer(),
           ListView(
             shrinkWrap: true,
             padding: const EdgeInsets.symmetric(
@@ -143,21 +105,7 @@ class HomeserverPickerView extends StatelessWidget {
             ),
             children: [
               FractionallySizedBox(
-                widthFactor: 0.5, // % width of the parent
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: theme.textTheme.labelMedium,
-                    foregroundColor: theme.colorScheme.secondary,
-                  ),
-                  onPressed: controller.isLoggingIn || controller.isLoading
-                      ? null
-                      : controller.restoreBackup,
-                  child: Text(L10n.of(context)!.hydrate),
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              FractionallySizedBox(
-                widthFactor: 0.5, // % width of the parent
+                widthFactor: MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4, // % width of the parent
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.colorScheme.primary,
@@ -169,6 +117,20 @@ class HomeserverPickerView extends StatelessWidget {
                   child: Text(L10n.of(context)!.next),
                 ),
               ),
+              const SizedBox(height: 16.0),
+              FractionallySizedBox(
+                widthFactor: MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4, // % width of the parent
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    textStyle: theme.textTheme.labelMedium,
+                    foregroundColor: theme.colorScheme.onSurface,
+                  ),
+                  onPressed: controller.isLoggingIn || controller.isLoading
+                      ? null
+                      : controller.restoreBackup,
+                  child: Text(L10n.of(context)!.hydrate),
+                ),
+              ),              
             ],
           ),
         ],

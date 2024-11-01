@@ -39,24 +39,23 @@ class LoginScaffold extends StatelessWidget {
               title: appBar?.title,
               leading: appBar?.leading,
               actions: appBar?.actions,
-              backgroundColor: isMobileMode ? null : Colors.transparent,
+              backgroundColor: Colors.transparent,
             ),
       body: SafeArea(child: body),
-      backgroundColor:
-          isMobileMode ? null : theme.colorScheme.surface.withOpacity(0.8),
-      bottomNavigationBar: isMobileMode
-          ? Material(
-              elevation: 4,
-              shadowColor: theme.colorScheme.onSurface,
-              child: const SafeArea(
-                child: _PrivacyButtons(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                ),
-              ),
-            )
-          : null,
+      backgroundColor: theme.colorScheme.surfaceContainerLowest,
+      // bottomNavigationBar: isMobileMode
+      //     ? Material(
+      //         elevation: 4,
+      //         shadowColor: theme.colorScheme.onSurface,
+      //         child: const SafeArea(
+      //           child: _PrivacyButtons(
+      //             mainAxisAlignment: MainAxisAlignment.center,
+      //           ),
+      //         ),
+      //       )
+      //     : null,
     );
-    if (isMobileMode) return scaffold;
+    // if (isMobileMode) return scaffold;
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -78,9 +77,7 @@ class LoginScaffold extends StatelessWidget {
                   elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
                   shadowColor: theme.appBarTheme.shadowColor,
                   child: ConstrainedBox(
-                    constraints: isMobileMode
-                        ? const BoxConstraints()
-                        : const BoxConstraints(maxWidth: 480, maxHeight: 540),
+                    constraints: const BoxConstraints(maxWidth: 500, maxHeight: 550),
                     child: BackdropFilter(
                       filter: ImageFilter.blur(
                         sigmaX: 10.0,

@@ -25,36 +25,37 @@ class LoginView extends StatelessWidget {
 
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
-      appBar: AppBar(
-        leading: controller.loading ? null : const Center(child: BackButton()),
-        automaticallyImplyLeading: !controller.loading,
-        titleSpacing: !controller.loading ? 0 : null,
-        title: Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(text: titleParts.first),
-              TextSpan(
-                text: homeserver,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              TextSpan(text: titleParts.last),
-            ],
-          ),
-          style: const TextStyle(fontSize: 18),
-        ),
-      ),
+      appBar: null,
       body: Builder(
         builder: (context) {
           return AutofillGroup(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Column(
+              // padding: const EdgeInsets.symmetric(horizontal: 8),
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Image.asset('assets/banner_transparent.png'),
-                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 64.0,
+                    bottom: 16.0,
+                    left: 64.0,
+                    right: 64.0,
+                  ),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width < 450 ? 
+                        MediaQuery.of(context).size.width * 1 : MediaQuery.of(context).size.width * 0.6,
+                    ),
+                    child: Image.asset(
+                      'assets/banner_transparent.png',
+                      alignment: Alignment.center,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FractionallySizedBox(
-                    widthFactor: 0.6,
+                    widthFactor: 0.7,
                     child: TextField(
                       readOnly: controller.loading,
                       autocorrect: false,
@@ -66,11 +67,16 @@ class LoginView extends StatelessWidget {
                       autofillHints:
                           controller.loading ? null : [AutofillHints.username],
                       decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.account_box_outlined),
+                        filled: true,
+                        fillColor: theme.colorScheme.surfaceContainerHighest,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(34.0),
+                          borderSide: BorderSide.none,
+                        ),
                         errorText: controller.usernameError,
                         errorStyle: const TextStyle(color: Colors.orange),
-                        hintText: '@username:localpart',
-                        labelText: L10n.of(context)!.emailOrUsername,
+                        hintText: L10n.of(context)!.emailOrUsername,
+                        contentPadding: const EdgeInsets.all(16.0),
                       ),
                     ),
                   ),
@@ -79,7 +85,7 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FractionallySizedBox(
-                    widthFactor: 0.6,
+                    widthFactor: 0.7,
                     child: TextField(
                       readOnly: controller.loading,
                       autocorrect: false,
@@ -90,30 +96,26 @@ class LoginView extends StatelessWidget {
                       obscureText: !controller.showPassword,
                       onSubmitted: (_) => controller.login(),
                       decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock_outlined),
+                        filled: true,
+                        fillColor: theme.colorScheme.surfaceContainerHighest,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(34.0),
+                          borderSide: BorderSide.none,
+                        ),
                         errorText: controller.passwordError,
                         errorStyle: const TextStyle(color: Colors.orange),
-                        suffixIcon: IconButton(
-                          onPressed: controller.toggleShowPassword,
-                          icon: Icon(
-                            controller.showPassword
-                                ? Icons.visibility_off_outlined
-                                : Icons.visibility_outlined,
-                            color: Colors.black,
-                          ),
-                        ),
-                        hintText: '******',
-                        labelText: L10n.of(context)!.password,
+                        hintText: L10n.of(context)!.password,
+                        contentPadding: const EdgeInsets.all(16.0),
                       ),
                     ),
                   ),
                 ),
-                // if (MediaQuery.of(context).size.height > 512) const Spacer(),
+                if (MediaQuery.of(context).size.height > 512) const Spacer(),
                 const SizedBox(height: 64),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FractionallySizedBox(
-                    widthFactor: 0.5,
+                    widthFactor: MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: theme.colorScheme.primary,
@@ -130,13 +132,14 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FractionallySizedBox(
-                  widthFactor: 0.5,
+                  widthFactor: MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4,
                     child: TextButton(
                       onPressed: controller.loading
                           ? () {}
                           : controller.passwordForgotten,
                       style: TextButton.styleFrom(
-                        foregroundColor: theme.colorScheme.error,
+                        textStyle: theme.textTheme.labelMedium,
+                        foregroundColor: theme.colorScheme.onSurface,
                       ),
                       child: Text(L10n.of(context)!.passwordForgotten),
                     ),

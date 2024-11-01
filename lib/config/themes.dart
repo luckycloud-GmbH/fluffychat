@@ -66,6 +66,7 @@ abstract class FluffyThemes {
     final colorScheme = ColorScheme.fromSeed(
       brightness: brightness,
       seedColor: seed ?? AppConfig.colorSchemeSeed ?? AppConfig.primaryColor,
+      dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
     );
     return ThemeData(
       visualDensity: VisualDensity.standard,
