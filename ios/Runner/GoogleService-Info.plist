@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyDJaUk67xDif3KX0ROpxmiqvoIim47ovg4</string>
+	<string>AIzaSyCMoeLuDnwz2HHwu3L8y5dtt_WnL1C-Fco</string>
 	<key>GCM_SENDER_ID</key>
-	<string>683780696762</string>
+	<string>653217454232</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>de.luckycloud.luckychat</string>
 	<key>PROJECT_ID</key>
-	<string>luckychat-7bce5</string>
+	<string>luckychat-dev2</string>
 	<key>STORAGE_BUCKET</key>
-	<string>luckychat-7bce5.appspot.com</string>
+	<string>luckychat-dev2.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:683780696762:ios:004ad714daef7bac40f083</string>
+	<string>1:653217454232:ios:703e3b53424bfcba00d8ed</string>
 </dict>
 </plist>
