@@ -10,6 +10,8 @@ services:
       - "8082:8082"  # Map port 8082 to the Flutter web server port
     volumes:
       - ./lib:/app/lib  # Mount the lib folder to reflect changes
+      - ./config.json:/usr/share/nginx/html/config.json 
+      - ./login-bg.png:/usr/share/nginx/html/login-bg.png
     command: >
       sh -c "
       flutter pub get &&

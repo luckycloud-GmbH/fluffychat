@@ -63,6 +63,7 @@ class HomeserverPickerView extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 maxWidth: MediaQuery.of(context).size.width,
+                maxHeight: 100,
               ),
               child: Image.asset(
                 'assets/banner_transparent.png',

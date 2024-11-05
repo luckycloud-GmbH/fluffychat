@@ -58,10 +58,10 @@ class LoginScaffold extends StatelessWidget {
     // if (isMobileMode) return scaffold;
     return Container(
       decoration: AppConfig.enableBGImage ?
-        const BoxDecoration(
+        BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('assets/login_wallpaper.png'),
+            image: NetworkImage(AppConfig.defaultBGImage),
           ),
         ) : BoxDecoration(
           color: AppConfig.backgroundColor,
@@ -80,7 +80,7 @@ class LoginScaffold extends StatelessWidget {
                   elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
                   shadowColor: theme.appBarTheme.shadowColor,
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 500, maxHeight: 515),
+                    constraints: const BoxConstraints(maxWidth: 500, maxHeight: 520),
                     child: BackdropFilter(
                       filter: ImageFilter.blur(
                         sigmaX: 10.0,

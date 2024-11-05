@@ -16,6 +16,8 @@ abstract class AppConfig {
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
   static bool enableBGImage = false;
+  static String _defaultBGImage = 'https://dev-chat.lc-testing.de/login-bg.png';
+  static String get defaultBGImage => _defaultBGImage;
   static Color primaryColor = Color(0xFF42D75F);
   static const Color primaryColorLight = Color(0xFFcdeaba);
   static const Color secondaryColor = Color(0xFFADADAD);
@@ -116,6 +118,9 @@ abstract class AppConfig {
     // custom color and bg image
     if (json['enable_bg_image'] is bool) {
       enableBGImage = json['enable_bg_image'];
+    }
+    if (json['default_bg_image'] is String) {
+      _defaultBGImage = json['default_bg_image'];
     }
     if (json['primary_color'] != null) {
       primaryColor = Color(json['primary_color']);
