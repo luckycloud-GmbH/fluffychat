@@ -36,7 +36,7 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 64.0,
-                    bottom: 16.0,
+                    bottom: 6.0,
                     left: 48.0,
                     right: 48.0,
                   ),
@@ -110,7 +110,7 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 64),
+                const SizedBox(height: 54),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FractionallySizedBox(
