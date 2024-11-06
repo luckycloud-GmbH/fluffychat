@@ -75,9 +75,7 @@ class HomeserverPickerView extends StatelessWidget {
             padding: const EdgeInsets.all(32.0),
             child: FractionallySizedBox(
               widthFactor: 0.8, // % of the parent
-              child: SizedBox(
-                height: 56,
-                child: TextField(
+              child: TextField(
                 controller: controller.homeserverController,
                 autocorrect: false,
                 keyboardType: TextInputType.url,
@@ -90,9 +88,9 @@ class HomeserverPickerView extends StatelessWidget {
                   ),
                   hintText: AppConfig.defaultHomeserver,
                   errorText: controller.error,
+                  errorStyle: const TextStyle(color: Colors.orange),
                   contentPadding: const EdgeInsets.all(16.0),
                 ),
-              ),
               ),
             ),
           ),

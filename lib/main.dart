@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -51,7 +54,22 @@ void main() async {
   Logs().i(
     '${AppConfig.applicationName} started in foreground mode. Rendering GUI...',
   );
+  // Load the configuration from json file before starting GUI.
+  await initConfig();
   await startGui(clients, store);
+}
+
+Future<void> initConfig() async {
+  try {
+    final configJsonString =
+        utf8.decode((await http.get(Uri.parse('config.json'))).bodyBytes);
+    final configJson = json.decode(configJsonString);
+    AppConfig.loadFromJson(configJson);
+  } on FormatException catch (_) {
+    Logs().i('[main] config.json invalid format');
+  } catch (e) {
+    Logs().i('[main] config.json not found', e);
+  }
 }
 
 /// Fetch the pincode for the applock and start the flutter engine.
