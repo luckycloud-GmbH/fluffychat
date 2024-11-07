@@ -74,7 +74,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         error = loginFlows = null;
         isLoading = false;
         Matrix.of(context).getLoginClient().homeserver = null;
-        _lastCheckedUrl = null;
+        // _lastCheckedUrl = null;
       });
       return;
     }

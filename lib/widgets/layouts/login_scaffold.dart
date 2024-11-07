@@ -78,12 +78,10 @@ class LoginScaffold extends StatelessWidget {
                   shadowColor: theme.appBarTheme.shadowColor,
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 500, maxHeight: 520),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(
-                        sigmaX: 10.0,
-                        sigmaY: 10.0,
-                      ),
-                      child: scaffold,
+                    child: Scaffold(
+                      key: const Key('LoginScaffold'),
+                      appBar: appBar,
+                      body: SafeArea(child: body),
                     ),
                   ),
                 ),
