@@ -21,7 +21,7 @@ class LoginView extends StatelessWidget {
         .homeserver
         .toString()
         .replaceFirst('https://', '');
-    final title = L10n.of(context)!.logInTo(homeserver);
+    final title = L10n.of(context).logInTo(homeserver);
     final titleParts = title.split(homeserver);
 
     return LoginScaffold(

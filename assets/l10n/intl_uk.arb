@@ -2806,15 +2806,15 @@
   "@doesNotSeemToBeAValidHomeserver": {},
   "calculatingFileSize": "Обчислення розміру файлу...",
   "@calculatingFileSize": {},
-  "prepareSendingAttachment": "Підготовка до відправлення вкладення...",
+  "prepareSendingAttachment": "Підготовка до надсилання вкладення...",
   "@prepareSendingAttachment": {},
-  "sendingAttachment": "Відправлення вкладення...",
+  "sendingAttachment": "Надсилання вкладення...",
   "@sendingAttachment": {},
   "generatingVideoThumbnail": "Генерування мініатюри відео...",
   "@generatingVideoThumbnail": {},
-  "compressVideo": "Стискання відео...",
+  "compressVideo": "Стиснення відео...",
   "@compressVideo": {},
-  "sendingAttachmentCountOfCount": "Відправлення вкладення {index} з {length}...",
+  "sendingAttachmentCountOfCount": "Надсилання вкладення {index} з {length}...",
   "@sendingAttachmentCountOfCount": {
     "type": "integer",
     "placeholders": {
@@ -2822,11 +2822,27 @@
       "length": {}
     }
   },
-  "serverLimitReached": "Досягнуто ліміт сервера! Очікування {seconds} секунд...",
+  "serverLimitReached": "Досягнуто ліміту сервера! Очікування {seconds} секунд...",
   "@serverLimitReached": {
     "type": "integer",
     "placeholders": {
       "seconds": {}
     }
-  }
+  },
+  "oneOfYourDevicesIsNotVerified": "Один із ваших пристроїв не верифікований",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Примітка: Коли ви під'єднуєте всі свої пристрої до резервної копії бесіди, вони автоматично верифікуються.",
+  "@noticeChatBackupDeviceVerification": {},
+  "continueText": "Продовжити",
+  "@continueText": {},
+  "manageAccount": "Керування обліковим записом",
+  "@manageAccount": {},
+  "welcomeText": "Привіт-привіт 👋 Це FluffyChat. Ви можете увійти на будь-який сервер, сумісний із https://matrix.org. А потім спілкуватися з будь-ким. Це величезна децентралізована мережа для обміну повідомленнями!",
+  "@welcomeText": {},
+  "blur": "Розмиття:",
+  "@blur": {},
+  "opacity": "Прозорість:",
+  "@opacity": {},
+  "setWallpaper": "Встановити шпалери",
+  "@setWallpaper": {}
 }

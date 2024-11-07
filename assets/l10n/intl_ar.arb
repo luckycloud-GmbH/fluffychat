@@ -2828,5 +2828,21 @@
     "placeholders": {
       "seconds": {}
     }
-  }
+  },
+  "oneOfYourDevicesIsNotVerified": "لم يتم التحقق من أحد أجهزتك",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "ملاحظة: عند توصيل جميع أجهزتك بنسخة احتياطية للدردشة، يتم التحقق منها تلقائيًا.",
+  "@noticeChatBackupDeviceVerification": {},
+  "continueText": "استمرار",
+  "@continueText": {},
+  "welcomeText": "مرحبًا، 👋 معك FluffyChat. يمكنك تسجيل الدخول إلى أي خادم منزلي، وهو متوافق مع https://matrix.org. ثم دردش مع أي شخص. إنها شبكة مراسلة لا مركزية ضخمة!",
+  "@welcomeText": {},
+  "blur": "الضبابية:",
+  "@blur": {},
+  "setWallpaper": "تعيين الخلفية",
+  "@setWallpaper": {},
+  "opacity": "التعتيم:",
+  "@opacity": {},
+  "manageAccount": "‫إدارة الحساب‬",
+  "@manageAccount": {}
 }
