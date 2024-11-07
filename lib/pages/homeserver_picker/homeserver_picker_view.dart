@@ -105,7 +105,7 @@ class HomeserverPickerView extends StatelessWidget {
                 widthFactor: MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4, // % width of the parent
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: theme.colorScheme.primary,
+                    backgroundColor: AppConfig.primaryColor,
                     foregroundColor: theme.colorScheme.onPrimary,
                   ),
                   onPressed: controller.isLoggingIn || controller.isLoading

@@ -93,7 +93,7 @@ class LoginScaffold extends StatelessWidget {
               ),
             ),
           ),
-          const _PrivacyButtons(mainAxisAlignment: MainAxisAlignment.center),
+          // const _PrivacyButtons(mainAxisAlignment: MainAxisAlignment.center),
         ],
       ),
     );

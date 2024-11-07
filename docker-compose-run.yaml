@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  fluffychat:
+    image: custom-fluffychat:latest
+    ports:
+      - "0.0.0.0:8082:80"  # Map port 8082 to the Flutter web server port
+    volumes:
+      - ./config.json:/usr/share/nginx/html/config.json
+      - ./login-bg.png:/usr/share/nginx/html/login-bg.png
+    restart: always

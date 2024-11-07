@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'login.dart';
@@ -117,7 +118,7 @@ class LoginView extends StatelessWidget {
                     widthFactor: MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.colorScheme.primary,
+                        backgroundColor: AppConfig.primaryColor,
                         foregroundColor: theme.colorScheme.onPrimary,
                       ),
                       onPressed: controller.loading ? null : controller.login,
