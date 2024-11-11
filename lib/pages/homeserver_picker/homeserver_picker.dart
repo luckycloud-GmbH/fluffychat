@@ -67,7 +67,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   /// login type.
   Future<void> checkHomeserverAction([_]) async {
     final homeserverInput =
-        homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
+        AppConfig.defaultHomeserver;
+        // homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
 
     if (homeserverInput.isEmpty || !homeserverInput.contains('.')) {
       setState(() {
@@ -108,9 +109,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     }
 
     if (error == null && loginFlows != null) {
-      if(supportsSso) {
-        ssoLoginAction();
-      } else {
+      if(!supportsSso) {
         login();
       }
     }

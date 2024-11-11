@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -7,6 +6,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'login.dart';
+import '../../utils/image_fallback.dart';
 
 class LoginView extends StatelessWidget {
   final LoginController controller;
@@ -48,12 +48,12 @@ class LoginView extends StatelessWidget {
                       maxHeight: 100,
                     ),
                     // child: Image.asset(
-                    //   'assets/banner_transparent.svg',
+                    //   'assets/banner_transparent.png',
                     //   alignment: Alignment.center,
                     // ),
-                    child: SvgPicture.asset(
-                      'assets/banner_transparent.svg',
-                      alignment: Alignment.center,
+                    child: const FallbackImage(
+                      svgPath: 'assets/banner_transparent.svg',
+                      pngPath: 'assets/banner_transparent.png',
                     ),
                   ),
                 ),

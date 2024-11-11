@@ -2,12 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
+
+import '../utils/image_fallback.dart';
 
 class LockScreen extends StatefulWidget {
   const LockScreen({super.key});
@@ -78,14 +79,14 @@ class _LockScreenState extends State<LockScreen> {
             child: ListView(
               shrinkWrap: true,
               children: [
-                Center(
+                const Center(
                   // child: Image.asset(
-                  //   'assets/info-logo.svg',
+                  //   'assets/info-logo.png',
                   //   width: 256,
                   // ),
-                  child: SvgPicture.asset(
-                    'assets/info-logo.svg',
-                    alignment: Alignment.center,
+                  child: FallbackImage(
+                    svgPath: 'assets/info-logo.svg',
+                    pngPath: 'assets/info-logo.png',
                   ),
                 ),
                 TextField(
