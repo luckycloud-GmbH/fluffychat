@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -78,9 +79,13 @@ class _LockScreenState extends State<LockScreen> {
               shrinkWrap: true,
               children: [
                 Center(
-                  child: Image.asset(
-                    'assets/info-logo.png',
-                    width: 256,
+                  // child: Image.asset(
+                  //   'assets/info-logo.svg',
+                  //   width: 256,
+                  // ),
+                  child: SvgPicture.asset(
+                    'assets/info-logo.svg',
+                    alignment: Alignment.center,
                   ),
                 ),
                 TextField(

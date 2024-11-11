@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -70,8 +71,12 @@ class HomeserverPickerView extends StatelessWidget {
                 maxWidth: MediaQuery.of(context).size.width,
                 maxHeight: 100,
               ),
-              child: Image.asset(
-                'assets/banner_transparent.png',
+              // child: Image.asset(
+              //   'assets/banner_transparent.svg',
+              //   alignment: Alignment.center,
+              // ),
+              child: SvgPicture.asset(
+                'assets/banner_transparent.svg',
                 alignment: Alignment.center,
               ),
             ),
