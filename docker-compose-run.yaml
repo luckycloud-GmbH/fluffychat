@@ -8,4 +8,5 @@ services:
     volumes:
       - ./config.json:/usr/share/nginx/html/config.json
       - ./login-bg.jpg:/usr/share/nginx/html/assets/assets/login-bg.jpg
+      - ./banner_transparent.svg:/usr/share/nginx/html/assets/assets/banner_transparent.svg
     restart: always

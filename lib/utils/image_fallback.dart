@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluffychat/config/app_config.dart';
 
 class FallbackImage extends StatelessWidget {
   final String svgPath;
@@ -23,7 +24,9 @@ class FallbackImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cacheBustParam = AppConfig.version;
     return FutureBuilder<bool>(
+      key: ValueKey(cacheBustParam),
       future: _assetExists(svgPath),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {

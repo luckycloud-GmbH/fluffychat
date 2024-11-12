@@ -45,6 +45,7 @@ abstract class PlatformInfos {
 
   static void showDialog(BuildContext context) async {
     final version = await PlatformInfos.getVersion();
+    final cacheBustParam = AppConfig.version;
     showAboutDialog(
       context: context,
       children: [
@@ -74,6 +75,7 @@ abstract class PlatformInfos {
       ],
       applicationIcon: Image.asset(
         'assets/logo.png',
+        key: ValueKey(cacheBustParam),
         width: 64,
         height: 64,
         filterQuality: FilterQuality.medium,

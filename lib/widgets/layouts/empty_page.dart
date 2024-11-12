@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
 
 class EmptyPage extends StatelessWidget {
@@ -9,6 +9,7 @@ class EmptyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = min(MediaQuery.of(context).size.width, EmptyPage._width) / 2;
     final theme = Theme.of(context);
+    final cacheBustParam = AppConfig.version;
     return Scaffold(
       // Add invisible appbar to make status bar on Android tablets bright.
       appBar: AppBar(
@@ -21,6 +22,7 @@ class EmptyPage extends StatelessWidget {
         alignment: Alignment.center,
         child: Image.asset(
           'assets/logo_transparent.png',
+          key: ValueKey(cacheBustParam),
           color: theme.colorScheme.surfaceContainerHigh,
           width: width,
           height: width,
