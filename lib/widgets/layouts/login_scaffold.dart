@@ -22,48 +22,25 @@ class LoginScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isMobileMode = enforceMobileMode || !FluffyThemes.isColumnMode(context);
 
-    final isMobileMode =
-        enforceMobileMode || !FluffyThemes.isColumnMode(context);
-    final scaffold = Scaffold(
-      key: const Key('LoginScaffold'),
-      appBar: appBar == null
-          ? null
-          : AppBar(
-              titleSpacing: appBar?.titleSpacing,
-              automaticallyImplyLeading:
-                  appBar?.automaticallyImplyLeading ?? true,
-              centerTitle: appBar?.centerTitle,
-              title: appBar?.title,
-              leading: appBar?.leading,
-              actions: appBar?.actions,
-              backgroundColor: Colors.transparent,
-            ),
-      body: SafeArea(child: body),
-      backgroundColor: theme.colorScheme.surfaceContainerLowest,
-      // bottomNavigationBar: isMobileMode
-      //     ? Material(
-      //         elevation: 4,
-      //         shadowColor: theme.colorScheme.onSurface,
-      //         child: const SafeArea(
-      //           child: _PrivacyButtons(
-      //             mainAxisAlignment: MainAxisAlignment.center,
-      //           ),
-      //         ),
-      //       )
-      //     : null,
-    );
-    // if (isMobileMode) return scaffold;
+    // cache-busting parameter
+    final cacheBustParam = AppConfig.version;
+
     return Container(
-      decoration: AppConfig.enableBGImage ?
-        const BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage('assets/login-bg.jpg'),
-          ),
-        ) : BoxDecoration(
-          color: AppConfig.backgroundColor,
-      ),
+      decoration: AppConfig.enableBGImage
+          ? BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                // Add cache-busting parameter to the image URL
+                image: NetworkImage(
+                  'assets/assets/login-bg.jpg?cache_bust=$cacheBustParam',
+                ),
+              ),
+            )
+          : BoxDecoration(
+              color: AppConfig.backgroundColor,
+            ),
       child: Column(
         children: [
           const SizedBox(height: 16),

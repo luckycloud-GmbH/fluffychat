@@ -18,6 +18,8 @@ abstract class AppConfig {
   static bool enableBGImage = false;
   // static String _defaultBGImage = 'https://dev-chat.lc-testing.de/assets/assets/login-bg.jpg';
   // static String get defaultBGImage => _defaultBGImage;
+  static String _version = '1.0.0';
+  static String get version => _version;
   static Color primaryColor = Color(0xFF42D75F);
   static const Color primaryColorLight = Color(0xFFcdeaba);
   static const Color secondaryColor = Color(0xFFADADAD);
@@ -123,6 +125,9 @@ abstract class AppConfig {
     // if (json['default_bg_image'] is String) {
     //   _defaultBGImage = json['default_bg_image'];
     // }
+    if (json['version'] is String) {
+      _version = json['version'];
+    }
     if (json['primary_color'] != null) {
       primaryColor = Color(json['primary_color']);
     }
