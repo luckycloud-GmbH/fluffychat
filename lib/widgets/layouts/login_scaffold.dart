@@ -56,10 +56,10 @@ class LoginScaffold extends StatelessWidget {
     // if (isMobileMode) return scaffold;
     return Container(
       decoration: AppConfig.enableBGImage ?
-        BoxDecoration(
+        const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: NetworkImage(AppConfig.defaultBGImage),
+            image: AssetImage('assets/login-bg.jpg'),
           ),
         ) : BoxDecoration(
           color: AppConfig.backgroundColor,

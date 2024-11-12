@@ -37,7 +37,7 @@ class LoginView extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 64.0,
+                    top: 48.0,
                     bottom: 6.0,
                     left: 48.0,
                     right: 48.0,
@@ -45,7 +45,7 @@ class LoginView extends StatelessWidget {
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
                       maxWidth: MediaQuery.of(context).size.width,
-                      maxHeight: 100,
+                      maxHeight: 80,
                     ),
                     // child: Image.asset(
                     //   'assets/banner_transparent.png',
@@ -57,7 +57,7 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 48),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FractionallySizedBox(

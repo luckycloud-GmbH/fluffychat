@@ -11,7 +11,7 @@ services:
     volumes:
       - ./lib:/app/lib  # Mount the lib folder to reflect changes
       - ./config.json:/usr/share/nginx/html/config.json 
-      - ./login-bg.png:/usr/share/nginx/html/login-bg.png
+      - ./login-bg.jpg:/usr/share/nginx/html/assets/assets/login-bg.jpg
     command: >
       sh -c "
       flutter pub get &&

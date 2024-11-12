@@ -45,6 +45,15 @@
 
 <body>
   <script>
+    fetch('config.json')
+      .then(response => response.json())
+      .then(data => {
+        let backgroundColor = `#${data.background_color.slice(4)}`;
+        document.body.style.backgroundColor = backgroundColor;
+        console.log('Background color loaded:', data.background_color, backgroundColor);
+      })
+      .catch(error => console.error('Error loading the background color:', error));
+
     window.addEventListener('load', function (ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({

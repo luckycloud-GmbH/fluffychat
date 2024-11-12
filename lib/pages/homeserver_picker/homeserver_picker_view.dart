@@ -61,7 +61,7 @@ class HomeserverPickerView extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(
-              top: 64.0,
+              top: 48.0,
               bottom: 16.0,
               left: 48.0,
               right: 48.0,
@@ -69,7 +69,7 @@ class HomeserverPickerView extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 maxWidth: MediaQuery.of(context).size.width,
-                maxHeight: 100,
+                maxHeight: 80,
               ),
               // child: Image.asset(
               //   'assets/banner_transparent.png',
@@ -111,7 +111,7 @@ class HomeserverPickerView extends StatelessWidget {
               vertical: 48.0,
             ),
             children: [
-              const SizedBox(height: 32),
+              // const SizedBox(height: 32),
               FractionallySizedBox(
                 widthFactor: MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4, // % width of the parent
                 child: ElevatedButton(
@@ -125,7 +125,7 @@ class HomeserverPickerView extends StatelessWidget {
                   child: Text(L10n.of(context)!.login),
                 ),
               ),
-              const SizedBox(height: 32.0),
+              const SizedBox(height: 64.0),
               controller.supportsSso
               ? FractionallySizedBox(
                 widthFactor: MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4, // % width of the parent

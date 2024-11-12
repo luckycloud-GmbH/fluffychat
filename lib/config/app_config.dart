@@ -16,8 +16,8 @@ abstract class AppConfig {
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
   static bool enableBGImage = false;
-  static String _defaultBGImage = 'https://dev-chat.lc-testing.de/login-bg.png';
-  static String get defaultBGImage => _defaultBGImage;
+  // static String _defaultBGImage = 'https://dev-chat.lc-testing.de/assets/assets/login-bg.jpg';
+  // static String get defaultBGImage => _defaultBGImage;
   static Color primaryColor = Color(0xFF42D75F);
   static const Color primaryColorLight = Color(0xFFcdeaba);
   static const Color secondaryColor = Color(0xFFADADAD);
@@ -87,7 +87,7 @@ abstract class AppConfig {
         colorSchemeSeed = Color(json['chat_color']);
       } catch (e) {
         Logs().w(
-          'Invalid color in config.json! Please make sure to define the color in this format: "0xffdd0000"',
+          'Invalid color in config.json! Please make sure to define the color in this format: "0xFF42d75f"',
           e,
         );
       }
@@ -120,9 +120,9 @@ abstract class AppConfig {
     if (json['enable_bg_image'] is bool) {
       enableBGImage = json['enable_bg_image'];
     }
-    if (json['default_bg_image'] is String) {
-      _defaultBGImage = json['default_bg_image'];
-    }
+    // if (json['default_bg_image'] is String) {
+    //   _defaultBGImage = json['default_bg_image'];
+    // }
     if (json['primary_color'] != null) {
       primaryColor = Color(json['primary_color']);
     }

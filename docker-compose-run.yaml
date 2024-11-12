@@ -7,5 +7,5 @@ services:
       - "0.0.0.0:8082:80"  # Map port 8082 to the Flutter web server port
     volumes:
       - ./config.json:/usr/share/nginx/html/config.json
-      - ./login-bg.png:/usr/share/nginx/html/login-bg.png
+      - ./login-bg.jpg:/usr/share/nginx/html/assets/assets/login-bg.jpg
     restart: always

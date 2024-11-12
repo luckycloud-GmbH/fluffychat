@@ -19,6 +19,3 @@ COPY --from=builder /app/build/web /usr/share/nginx/html
 
 # Copy config.json to the same directory
 COPY config.json /usr/share/nginx/html/config.json
-
-# Copy login bg image to the same directory
-COPY login-bg.png /usr/share/nginx/html/login-bg.png
