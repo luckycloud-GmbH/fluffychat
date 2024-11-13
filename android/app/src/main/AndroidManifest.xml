@@ -31,6 +31,7 @@
     <application
         android:label="luckychat"
         android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true"
         android:allowBackup="false"
         android:fullBackupContent="false"
@@ -71,7 +72,7 @@
                <action android:name="android.intent.action.VIEW" />
                <category android:name="android.intent.category.DEFAULT" />
                <category android:name="android.intent.category.BROWSABLE" />
-               <data android:scheme="im.fluffychat" android:host="chat" />
+               <data android:scheme="de.luckycloud.luckychat" android:host="chat" />
             </intent-filter>
             <intent-filter>
                <action android:name="android.intent.action.SEND" />
@@ -107,7 +108,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="im.fluffychat" android:host="login"/>
+                <data android:scheme="de.luckycloud.luckychat" android:host="login"/>
             </intent-filter>
         </activity>
 
