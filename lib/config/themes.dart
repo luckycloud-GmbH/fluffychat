@@ -19,7 +19,7 @@ abstract class FluffyThemes {
       MediaQuery.of(context).size.width > FluffyThemes.columnWidth * 3.5;
 
   static const fallbackTextStyle = TextStyle(
-    fontFamily: 'Roboto',
+    fontFamily: 'Euclid',
     fontFamilyFallback: ['NotoEmoji'],
   );
 
@@ -73,6 +73,7 @@ abstract class FluffyThemes {
       useMaterial3: true,
       brightness: brightness,
       colorScheme: colorScheme,
+      fontFamily: 'Euclid',
       textTheme: PlatformInfos.isDesktop
           ? brightness == Brightness.light
               ? Typography.material2018().black.merge(fallbackTextTheme)
