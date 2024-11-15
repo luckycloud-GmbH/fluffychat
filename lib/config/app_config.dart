@@ -40,7 +40,7 @@ abstract class AppConfig {
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
     host: 'github.com',
-    path: '/krille-chan/fluffychat/issues/new',
+    path: '/luckycloud-GmbH/luckychat/issues/new',
   );
   static bool renderHtml = true;
   static bool hideRedactedEvents = false;
