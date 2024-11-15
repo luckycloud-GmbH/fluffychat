@@ -850,23 +850,19 @@ class ChatListController extends State<ChatList>
           content: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.close, color: theme.colorScheme.onErrorContainer),
-                    onPressed: () {
-                      controller.close();
-                    },
+              IconButton(
+                icon: Icon(Icons.close, color: theme.colorScheme.onErrorContainer),
+                onPressed: () {
+                  controller.close();
+                },
+              ),
+              Expanded(
+                child: Text(
+                  L10n.of(context).oneOfYourDevicesIsNotVerified,
+                  style: TextStyle(
+                    color: theme.colorScheme.onErrorContainer,
                   ),
-                  Expanded(
-                    child: Text(
-                      L10n.of(context).oneOfYourDevicesIsNotVerified,
-                      style: TextStyle(
-                        color: theme.colorScheme.onErrorContainer,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ],
           ),

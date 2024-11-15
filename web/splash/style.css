@@ -35,6 +35,11 @@ html {
   object-fit: cover;
 }
 
+#splash img.center {
+  height: 80px;
+  max-height: 80px;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     margin: 0;
