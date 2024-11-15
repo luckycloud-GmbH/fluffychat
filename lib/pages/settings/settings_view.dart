@@ -174,15 +174,15 @@ class SettingsView extends StatelessWidget {
                   onTap: () => context.go('/rooms/settings/security'),
                 ),
                 Divider(color: theme.dividerColor),
-                ListTile(
-                  leading: const Icon(Icons.dns_outlined),
-                  title: Text(
-                    L10n.of(context).aboutHomeserver(
-                      Matrix.of(context).client.userID?.domain ?? 'homeserver',
-                    ),
-                  ),
-                  onTap: () => context.go('/rooms/settings/homeserver'),
-                ),
+                // ListTile(
+                //   leading: const Icon(Icons.dns_outlined),
+                //   title: Text(
+                //     L10n.of(context).aboutHomeserver(
+                //       Matrix.of(context).client.userID?.domain ?? 'homeserver',
+                //     ),
+                //   ),
+                //   onTap: () => context.go('/rooms/settings/homeserver'),
+                // ),
                 ListTile(
                   leading: const Icon(Icons.privacy_tip_outlined),
                   title: Text(L10n.of(context).privacy),

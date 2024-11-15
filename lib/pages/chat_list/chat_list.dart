@@ -847,11 +847,28 @@ class ChatListController extends State<ChatList>
         SnackBar(
           duration: const Duration(seconds: 15),
           backgroundColor: theme.colorScheme.errorContainer,
-          content: Text(
-            L10n.of(context).oneOfYourDevicesIsNotVerified,
-            style: TextStyle(
-              color: theme.colorScheme.onErrorContainer,
-            ),
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.close, color: theme.colorScheme.onErrorContainer),
+                    onPressed: () {
+                      controller.close();
+                    },
+                  ),
+                  Expanded(
+                    child: Text(
+                      L10n.of(context).oneOfYourDevicesIsNotVerified,
+                      style: TextStyle(
+                        color: theme.colorScheme.onErrorContainer,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
           action: SnackBarAction(
             onPressed: () {
