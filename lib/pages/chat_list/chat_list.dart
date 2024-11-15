@@ -832,6 +832,8 @@ class ChatListController extends State<ChatList>
           await BootstrapDialog(client: client).show(context);
         }
       }
+      await client.oneShotSync();
+      Logs().i('Updated preBatch: ${client.prevBatch}');
     }
     if (!mounted) return;
     setState(() {
