@@ -26,25 +26,25 @@ abstract class AppConfig {
   static Color backgroundColor = Color(0xFF008000);
 
   static String _privacyUrl =
-      'https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md';
+      'https://docs.luckycloud.de/de/data-protection-and-security';
   static String get privacyUrl => _privacyUrl;
   static const String website = 'https://fluffychat.im';
   static const String enablePushTutorial =
-      'https://github.com/krille-chan/fluffychat/wiki/Push-Notifications-without-Google-Services';
+      'https://github.com/luckycloud-GmbH/luckychat/wiki/Push-Notifications-without-Google-Services';
   static const String encryptionTutorial =
-      'https://github.com/krille-chan/fluffychat/wiki/How-to-use-end-to-end-encryption-in-FluffyChat';
+      'https://github.com/luckycloud-GmbH/luckychat/wiki/How‐to‐use‐end‐to‐end‐encryption‐in‐luckychat';
   static const String startChatTutorial =
-      'https://github.com/krille-chan/fluffychat/wiki/How-to-Find-Users-in-FluffyChat';
+      'https://github.com/luckycloud-GmbH/luckychat/wiki/How‐to‐Find‐Users‐in‐luckychat';
   static const String appId = 'im.fluffychat.FluffyChat';
   static const String appOpenUrlScheme = 'im.fluffychat';
   static String _webBaseUrl = 'https://fluffychat.im/web';
   static String get webBaseUrl => _webBaseUrl;
   static const String sourceCodeUrl =
-      'https://github.com/krille-chan/fluffychat';
+      'https://github.com/luckycloud-GmbH/luckychat';
   static const String supportUrl =
-      'https://github.com/krille-chan/fluffychat/issues';
+      'https://luckycloud.de/de/support-center';
   static const String changelogUrl =
-      'https://github.com/krille-chan/fluffychat/blob/main/CHANGELOG.md';
+      'https://docs.luckycloud.de/de/changelogs';
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
     host: 'github.com',
