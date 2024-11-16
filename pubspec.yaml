@@ -125,16 +125,13 @@ flutter:
     - assets/js/package/
 
   fonts:
-    - family: Roboto
+    - family: Euclid
       fonts:
-        - asset: fonts/Roboto/Roboto-Regular.ttf
-        - asset: fonts/Roboto/Roboto-Italic.ttf
+        - asset: fonts/Euclid/EuclidSquare-Regular.ttf
+        - asset: fonts/Euclid/EuclidSquare-Italic.ttf
           style: italic
-        - asset: fonts/Roboto/Roboto-Bold.ttf
+        - asset: fonts/Euclid/EuclidSquare-Bold.ttf
           weight: 700
-    - family: RobotoMono
-      fonts:
-        - asset: fonts/Roboto/RobotoMono-Regular.ttf
     - family: NotoEmoji
       fonts:
         - asset: fonts/NotoEmoji/NotoColorEmoji.ttf
