@@ -239,20 +239,20 @@ class ChatDetailsView extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         Divider(color: theme.dividerColor),
-                        ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor: theme.scaffoldBackgroundColor,
-                            foregroundColor: iconColor,
-                            child: const Icon(
-                              Icons.insert_emoticon_outlined,
-                            ),
-                          ),
-                          title:
-                              Text(L10n.of(context)!.customEmojisAndStickers),
-                          subtitle: Text(L10n.of(context)!.setCustomEmotes),
-                          onTap: controller.goToEmoteSettings,
-                          trailing: const Icon(Icons.chevron_right_outlined),
-                        ),
+                        // ListTile(
+                        //   leading: CircleAvatar(
+                        //     backgroundColor: theme.scaffoldBackgroundColor,
+                        //     foregroundColor: iconColor,
+                        //     child: const Icon(
+                        //       Icons.insert_emoticon_outlined,
+                        //     ),
+                        //   ),
+                        //   title:
+                        //       Text(L10n.of(context)!.customEmojisAndStickers),
+                        //   subtitle: Text(L10n.of(context)!.setCustomEmotes),
+                        //   onTap: controller.goToEmoteSettings,
+                        //   trailing: const Icon(Icons.chevron_right_outlined),
+                        // ),
                         if (!room.isDirectChat)
                           ListTile(
                             leading: CircleAvatar(
@@ -287,7 +287,8 @@ class ChatDetailsView extends StatelessWidget {
                             onTap: () => context
                                 .push('/rooms/${room.id}/details/permissions'),
                           ),
-                        Divider(color: theme.dividerColor),
+                        if (!room.isDirectChat)
+                          Divider(color: theme.dividerColor),
                         ListTile(
                           title: Text(
                             L10n.of(context)!.countParticipants(

@@ -24,66 +24,32 @@ class ChatEmojiPicker extends StatelessWidget {
           ? MediaQuery.of(context).size.height / 2
           : 0,
       child: controller.showEmojiPicker
-          ? DefaultTabController(
-              length: 2,
-              child: Column(
-                children: [
-                  TabBar(
-                    tabs: [
-                      Tab(text: L10n.of(context)!.emojis),
-                      Tab(text: L10n.of(context)!.stickers),
-                    ],
-                  ),
-                  Expanded(
-                    child: TabBarView(
-                      children: [
-                        EmojiPicker(
-                          onEmojiSelected: controller.onEmojiSelected,
-                          onBackspacePressed: controller.emojiPickerBackspace,
-                          config: Config(
-                            emojiViewConfig: EmojiViewConfig(
-                              noRecents: const NoRecent(),
-                              backgroundColor:
-                                  theme.colorScheme.onInverseSurface,
-                            ),
-                            bottomActionBarConfig: const BottomActionBarConfig(
-                              enabled: false,
-                            ),
-                            categoryViewConfig: CategoryViewConfig(
-                              backspaceColor: theme.colorScheme.primary,
-                              iconColor:
-                                  theme.colorScheme.primary.withOpacity(0.5),
-                              iconColorSelected: theme.colorScheme.primary,
-                              indicatorColor: theme.colorScheme.primary,
-                            ),
-                            skinToneConfig: SkinToneConfig(
-                              dialogBackgroundColor: Color.lerp(
-                                theme.colorScheme.surface,
-                                theme.colorScheme.primaryContainer,
-                                0.75,
-                              )!,
-                              indicatorColor: theme.colorScheme.onSurface,
-                            ),
-                          ),
-                        ),
-                        StickerPickerDialog(
-                          room: controller.room,
-                          onSelected: (sticker) {
-                            controller.room.sendEvent(
-                              {
-                                'body': sticker.body,
-                                'info': sticker.info ?? {},
-                                'url': sticker.url.toString(),
-                              },
-                              type: EventTypes.Sticker,
-                            );
-                            controller.hideEmojiPicker();
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+          ? EmojiPicker(
+              onEmojiSelected: controller.onEmojiSelected,
+              onBackspacePressed: controller.emojiPickerBackspace,
+              config: Config(
+                emojiViewConfig: EmojiViewConfig(
+                  columns: 12,
+                  noRecents: const NoRecent(),
+                  backgroundColor: theme.colorScheme.onInverseSurface,
+                ),
+                bottomActionBarConfig: const BottomActionBarConfig(
+                  enabled: false,
+                ),
+                categoryViewConfig: CategoryViewConfig(
+                  backspaceColor: theme.colorScheme.primary,
+                  iconColor: theme.colorScheme.primary.withOpacity(0.5),
+                  iconColorSelected: theme.colorScheme.primary,
+                  indicatorColor: theme.colorScheme.primary,
+                ),
+                skinToneConfig: SkinToneConfig(
+                  dialogBackgroundColor: Color.lerp(
+                    theme.colorScheme.surface,
+                    theme.colorScheme.primaryContainer,
+                    0.75,
+                  )!,
+                  indicatorColor: theme.colorScheme.onSurface,
+                ),
               ),
             )
           : null,

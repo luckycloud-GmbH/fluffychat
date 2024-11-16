@@ -74,24 +74,24 @@ class SettingsChatView extends StatelessWidget {
                 defaultValue: AppConfig.swipeRightToLeftToReply,
               ),
               Divider(color: theme.dividerColor),
-              ListTile(
-                title: Text(
-                  L10n.of(context)!.customEmojisAndStickers,
-                  style: TextStyle(
-                    color: theme.colorScheme.secondary,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              ListTile(
-                title: Text(L10n.of(context)!.customEmojisAndStickers),
-                subtitle: Text(L10n.of(context)!.customEmojisAndStickersBody),
-                onTap: () => context.go('/rooms/settings/chat/emotes'),
-                trailing: const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Icon(Icons.chevron_right_outlined),
-                ),
-              ),
+              // ListTile(
+              //   title: Text(
+              //     L10n.of(context)!.customEmojisAndStickers,
+              //     style: TextStyle(
+              //       color: theme.colorScheme.secondary,
+              //       fontWeight: FontWeight.bold,
+              //     ),
+              //   ),
+              // ),
+              // ListTile(
+              //   title: Text(L10n.of(context)!.customEmojisAndStickers),
+              //   subtitle: Text(L10n.of(context)!.customEmojisAndStickersBody),
+              //   onTap: () => context.go('/rooms/settings/chat/emotes'),
+              //   trailing: const Padding(
+              //     padding: EdgeInsets.all(16.0),
+              //     child: Icon(Icons.chevron_right_outlined),
+              //   ),
+              // ),
               Divider(color: theme.dividerColor),
               ListTile(
                 title: Text(
