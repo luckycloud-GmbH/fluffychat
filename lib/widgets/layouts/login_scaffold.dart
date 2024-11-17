@@ -27,48 +27,11 @@ class LoginScaffold extends StatelessWidget {
     // cache-busting parameter
     final cacheBustParam = AppConfig.version;
 
-    return Container(
-      decoration: AppConfig.enableBGImage
-          ? BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                // Add cache-busting parameter to the image URL
-                image: NetworkImage(
-                  'assets/assets/login-bg.jpg?cache_bust=$cacheBustParam',
-                ),
-              ),
-            )
-          : BoxDecoration(
-              color: AppConfig.backgroundColor,
-            ),
-      child: Column(
-        children: [
-          const SizedBox(height: 16),
-          Expanded(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Material(
-                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                  clipBehavior: Clip.hardEdge,
-                  elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
-                  shadowColor: theme.appBarTheme.shadowColor,
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(),
-                    child: Scaffold(
-                      key: const Key('LoginScaffold'),
-                      appBar: appBar,
-                      body: SafeArea(child: body),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          // const _PrivacyButtons(mainAxisAlignment: MainAxisAlignment.center),
-        ],
-      ),
-    );
+    return Scaffold(
+        key: const Key('LoginScaffold'),
+        appBar: appBar,
+        body: SafeArea(child: body),
+      );
   }
 }
 

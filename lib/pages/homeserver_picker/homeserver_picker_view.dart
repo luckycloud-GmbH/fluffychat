@@ -119,7 +119,7 @@ class HomeserverPickerView extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 32),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FractionallySizedBox(
@@ -132,7 +132,7 @@ class HomeserverPickerView extends StatelessWidget {
                       controller: controller.passwordController,
                       textInputAction: TextInputAction.go,
                       obscureText: !controller.showPassword,
-                      onSubmitted: (_) => controller.logins(),
+                      onSubmitted: (_) => controller.login(),
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: theme.colorScheme.surfaceContainerHighest,
@@ -150,7 +150,7 @@ class HomeserverPickerView extends StatelessWidget {
                 ),
                 const SizedBox(height: 54),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FractionallySizedBox(
                     widthFactor: 0.8,
                     child: TextField(
@@ -197,35 +197,35 @@ class HomeserverPickerView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 64.0),
-              controller.supportsSso
-              ? FractionallySizedBox(
-                widthFactor: MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4, // % width of the parent
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppConfig.primaryColor,
-                    foregroundColor: theme.colorScheme.onPrimary,
-                  ),
-                  onPressed: controller.isLoggingIn || controller.isLoading || controller.loading
-                      ? null
-                      : controller.ssoLoginAction,
-                  child: Text(L10n.of(context)!.singlesignon),
-                ),
-              )
-              : const SizedBox(height: 56),
-              const SizedBox(height: 32.0),
-              FractionallySizedBox(
-                widthFactor: MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4, // % width of the parent
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: theme.textTheme.labelMedium,
-                    foregroundColor: theme.colorScheme.onSurface,
-                  ),
-                  onPressed: controller.isLoggingIn || controller.isLoading || controller.loading
-                      ? null
-                      : controller.restoreBackup,
-                  child: Text(L10n.of(context)!.hydrate),
-                ),
-              ),              
+              // controller.supportsSso
+              // ? FractionallySizedBox(
+              //   widthFactor: MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4, // % width of the parent
+              //   child: ElevatedButton(
+              //     style: ElevatedButton.styleFrom(
+              //       backgroundColor: AppConfig.primaryColor,
+              //       foregroundColor: theme.colorScheme.onPrimary,
+              //     ),
+              //     onPressed: controller.isLoggingIn || controller.isLoading || controller.loading
+              //         ? null
+              //         : controller.ssoLoginAction,
+              //     child: Text(L10n.of(context)!.singlesignon),
+              //   ),
+              // )
+              // : const SizedBox(height: 56),
+              // const SizedBox(height: 32.0),
+              // FractionallySizedBox(
+              //   widthFactor: MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4, // % width of the parent
+              //   child: TextButton(
+              //     style: TextButton.styleFrom(
+              //       textStyle: theme.textTheme.labelMedium,
+              //       foregroundColor: theme.colorScheme.onSurface,
+              //     ),
+              //     onPressed: controller.isLoggingIn || controller.isLoading || controller.loading
+              //         ? null
+              //         : controller.restoreBackup,
+              //     child: Text(L10n.of(context)!.hydrate),
+              //   ),
+              // ),              
             ],
           ),
         ],
