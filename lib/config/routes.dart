@@ -65,17 +65,17 @@ abstract class AppRoutes {
         const HomeserverPicker(addMultiAccount: false),
       ),
       redirect: loggedInRedirect,
-      routes: [
-        GoRoute(
-          path: 'login',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            state,
-            const Login(),
-          ),
-          redirect: loggedInRedirect,
-        ),
-      ],
+      // routes: [
+      //   GoRoute(
+      //     path: 'login',
+      //     pageBuilder: (context, state) => defaultPageBuilder(
+      //       context,
+      //       state,
+      //       const Login(),
+      //     ),
+      //     redirect: loggedInRedirect,
+      //   ),
+      // ],
     ),
     GoRoute(
       path: '/logs',
@@ -244,17 +244,17 @@ abstract class AppRoutes {
                         state,
                         const HomeserverPicker(addMultiAccount: true),
                       ),
-                      routes: [
-                        GoRoute(
-                          path: 'login',
-                          pageBuilder: (context, state) => defaultPageBuilder(
-                            context,
-                            state,
-                            const Login(),
-                          ),
-                          redirect: loggedOutRedirect,
-                        ),
-                      ],
+                      // routes: [
+                      //   GoRoute(
+                      //     path: 'login',
+                      //     pageBuilder: (context, state) => defaultPageBuilder(
+                      //       context,
+                      //       state,
+                      //       const Login(),
+                      //     ),
+                      //     redirect: loggedOutRedirect,
+                      //   ),
+                      // ],
                     ),
                     GoRoute(
                       path: 'homeserver',

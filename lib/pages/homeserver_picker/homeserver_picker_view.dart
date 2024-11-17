@@ -59,54 +59,122 @@ class HomeserverPickerView extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 48.0,
-              bottom: 16.0,
-              left: 48.0,
-              right: 48.0,
-            ),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width,
-                maxHeight: 80,
-              ),
-              child: AppConfig.logo_type == "png" ?  Image.asset(
-                  'assets/banner_transparent.png',
-                  alignment: Alignment.center,
-                ) : Image.asset(
-                  'assets/banner_transparent.svg',
-                  alignment: Alignment.center,
-                ),
-              // child: const FallbackImage(
-              //   svgPath: 'assets/banner_transparent.svg',
-              //   pngPath: 'assets/banner_transparent.png',
-              // ),
-            ),
-          ),
           // Padding(
-          //   padding: const EdgeInsets.all(32.0),
-          //   child: FractionallySizedBox(
-          //     widthFactor: 0.8, // % of the parent
-          //     child: TextField(
-          //       controller: controller.homeserverController,
-          //       autocorrect: false,
-          //       keyboardType: TextInputType.url,
-          //       decoration: InputDecoration(
-          //         filled: true,
-          //         fillColor: theme.colorScheme.surfaceContainerHighest,
-          //         border: OutlineInputBorder(
-          //           borderRadius: BorderRadius.circular(34.0),
-          //           borderSide: BorderSide.none,
-          //         ),
-          //         hintText: AppConfig.defaultHomeserver,
-          //         errorText: controller.error,
-          //         errorStyle: const TextStyle(color: Colors.orange),
-          //         contentPadding: const EdgeInsets.all(16.0),
-          //       ),
+          //   padding: const EdgeInsets.only(
+          //     top: 48.0,
+          //     bottom: 16.0,
+          //     left: 48.0,
+          //     right: 48.0,
+          //   ),
+          //   child: ConstrainedBox(
+          //     constraints: BoxConstraints(
+          //       maxWidth: MediaQuery.of(context).size.width,
+          //       maxHeight: 80,
           //     ),
+          //     child: AppConfig.logo_type == "png" ?  Image.asset(
+          //         'assets/banner_transparent.png',
+          //         alignment: Alignment.center,
+          //       ) : Image.asset(
+          //         'assets/banner_transparent.svg',
+          //         alignment: Alignment.center,
+          //       ),
+          //     // child: const FallbackImage(
+          //     //   svgPath: 'assets/banner_transparent.svg',
+          //     //   pngPath: 'assets/banner_transparent.png',
+          //     // ),
           //   ),
           // ),
+          AutofillGroup(
+            child: Column(
+              // padding: const EdgeInsets.symmetric(horizontal: 8),
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                const SizedBox(height: 48),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: FractionallySizedBox(
+                    widthFactor: 0.8,
+                    child: TextField(
+                      readOnly: controller.loading,
+                      autocorrect: false,
+                      autofocus: true,
+                      onChanged: controller.checkWellKnownWithCoolDown,
+                      controller: controller.usernameController,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.emailAddress,
+                      autofillHints:
+                          controller.loading ? null : [AutofillHints.username],
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: theme.colorScheme.surfaceContainerHighest,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(34.0),
+                          borderSide: BorderSide.none,
+                        ),
+                        errorText: controller.usernameError,
+                        errorStyle: const TextStyle(color: Colors.orange),
+                        hintText: L10n.of(context)!.emailOrUsername,
+                        contentPadding: const EdgeInsets.all(16.0),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: FractionallySizedBox(
+                    widthFactor: 0.8,
+                    child: TextField(
+                      readOnly: controller.loading,
+                      autocorrect: false,
+                      autofillHints:
+                          controller.loading ? null : [AutofillHints.password],
+                      controller: controller.passwordController,
+                      textInputAction: TextInputAction.go,
+                      obscureText: !controller.showPassword,
+                      onSubmitted: (_) => controller.logins(),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: theme.colorScheme.surfaceContainerHighest,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(34.0),
+                          borderSide: BorderSide.none,
+                        ),
+                        errorText: controller.passwordError,
+                        errorStyle: const TextStyle(color: Colors.orange),
+                        hintText: L10n.of(context)!.password,
+                        contentPadding: const EdgeInsets.all(16.0),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 54),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: FractionallySizedBox(
+                    widthFactor: 0.8,
+                    child: TextField(
+                      controller: controller.homeserverController,
+                      autocorrect: false,
+                      keyboardType: TextInputType.url,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: theme.colorScheme.surfaceContainerHighest,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(34.0),
+                          borderSide: BorderSide.none,
+                        ),
+                        hintText: AppConfig.homeserverHintText,
+                        errorText: controller.error,
+                        errorStyle: const TextStyle(color: Colors.orange),
+                        contentPadding: const EdgeInsets.all(16.0),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
           ListView(
             shrinkWrap: true,
             padding: const EdgeInsets.symmetric(
@@ -122,7 +190,7 @@ class HomeserverPickerView extends StatelessWidget {
                     backgroundColor: AppConfig.primaryColor,
                     foregroundColor: theme.colorScheme.onPrimary,
                   ),
-                  onPressed: controller.isLoggingIn || controller.isLoading
+                  onPressed: controller.isLoggingIn || controller.isLoading || controller.loading
                       ? null
                       : controller.login,
                   child: Text(L10n.of(context)!.login),
@@ -137,7 +205,7 @@ class HomeserverPickerView extends StatelessWidget {
                     backgroundColor: AppConfig.primaryColor,
                     foregroundColor: theme.colorScheme.onPrimary,
                   ),
-                  onPressed: controller.isLoggingIn || controller.isLoading
+                  onPressed: controller.isLoggingIn || controller.isLoading || controller.loading
                       ? null
                       : controller.ssoLoginAction,
                   child: Text(L10n.of(context)!.singlesignon),
@@ -152,7 +220,7 @@ class HomeserverPickerView extends StatelessWidget {
                     textStyle: theme.textTheme.labelMedium,
                     foregroundColor: theme.colorScheme.onSurface,
                   ),
-                  onPressed: controller.isLoggingIn || controller.isLoading
+                  onPressed: controller.isLoggingIn || controller.isLoading || controller.loading
                       ? null
                       : controller.restoreBackup,
                   child: Text(L10n.of(context)!.hydrate),
