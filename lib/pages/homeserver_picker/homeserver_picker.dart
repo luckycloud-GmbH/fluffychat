@@ -179,17 +179,18 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   }
 
   void login() async {
-    if (!supportsPasswordLogin) {
-      homeserverController.text = AppConfig.defaultHomeserver;
-      await checkHomeserverAction();
+    await checkHomeserverAction();
+    if (usernameController.text.isEmpty && passwordController.text.isEmpty && supportsSso) {
+      ssoLoginAction();
+    } else {
+      loginAction();
     }
-    logins();
   }
 
   void toggleShowPassword() =>
       setState(() => showPassword = !loading && !showPassword);
 
-  void logins() async {
+  void loginAction() async {
     final matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
       setState(() => usernameError = L10n.of(context).pleaseEnterYourUsername);
@@ -441,7 +442,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       );
       usernameController.text = input;
       passwordController.text = password;
-      logins();
+      loginAction();
     }
   }
 
