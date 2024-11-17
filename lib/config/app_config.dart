@@ -20,6 +20,8 @@ abstract class AppConfig {
   // static String get defaultBGImage => _defaultBGImage;
   static String _version = '1.0.0';
   static String get version => _version;
+  static String _logo_type = 'svg';
+  static String get logo_type => _logo_type;
   static Color primaryColor = Color(0xFF42D75F);
   static const Color primaryColorLight = Color(0xFFcdeaba);
   static const Color secondaryColor = Color(0xFFADADAD);
@@ -127,6 +129,9 @@ abstract class AppConfig {
     // }
     if (json['version'] is String) {
       _version = json['version'];
+    }
+    if (json['login_logo_type'] is String) {
+      _logo_type = json['login_logo_type'];
     }
     if (json['primary_color'] != null) {
       primaryColor = Color(json['primary_color']);

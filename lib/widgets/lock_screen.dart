@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 
@@ -79,15 +80,18 @@ class _LockScreenState extends State<LockScreen> {
             child: ListView(
               shrinkWrap: true,
               children: [
-                const Center(
-                  // child: Image.asset(
-                  //   'assets/info-logo.png',
-                  //   width: 256,
+                Center(
+                  child: AppConfig.logo_type == "png" ? Image.asset(
+                      'assets/info-logo.png',
+                      width: 256,
+                    ) : Image.asset(
+                      'assets/info-logo.png',
+                      width: 256,
+                    ),
+                  // child: FallbackImage(
+                  //   svgPath: 'assets/info-logo.svg',
+                  //   pngPath: 'assets/info-logo.png',
                   // ),
-                  child: FallbackImage(
-                    svgPath: 'assets/info-logo.svg',
-                    pngPath: 'assets/info-logo.png',
-                  ),
                 ),
                 TextField(
                   controller: _textEditingController,

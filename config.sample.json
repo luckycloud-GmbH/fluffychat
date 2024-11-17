@@ -1,12 +1,14 @@
 // sample config.json file
 // Please serve this file as config.json at the same path as app
 // If you want to change the color, you should keep 0xFF foramt
+// set login_logo_type to svg or png
 // enable_bg_image is for background image, if you want to enable it, change it to true
 // version is for the app version, used for cache busting
 
 {
   "application_name": "luckyChat",
   "default_homeserver": "dev.etke.host",
+  "login_logo_type": "svg",
   "enable_bg_image": false,
   "primary_color": "0xffdd0000",
   "background_color": "0xff42d75f",

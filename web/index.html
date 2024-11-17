@@ -44,6 +44,7 @@
 </head>
 
 <body>
+  <div id="loading-icon"></div>
   <script>
     fetch('config.json')
       .then(response => response.json())
@@ -68,15 +69,6 @@
       });
     });
   </script>
-  <picture id="splash">
-    <source
-      srcset="splash/img/splash.svg 1x, splash/img/splash.svg 2x, splash/img/splash.svg 3x, splash/img/splash.svg 4x"
-      media="(prefers-color-scheme: light) or (prefers-color-scheme: no-preference)">
-    <source
-      srcset="splash/img/splash.svg 1x, splash/img/splash.svg 2x, splash/img/splash.svg 3x, splash/img/splash.svg 4x"
-      media="(prefers-color-scheme: dark)">
-    <img class="center" src="splash/img/splash.svg" />
-  </picture>
 </body>
 
 </html>

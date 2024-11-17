@@ -47,14 +47,17 @@ class LoginView extends StatelessWidget {
                       maxWidth: MediaQuery.of(context).size.width,
                       maxHeight: 80,
                     ),
-                    // child: Image.asset(
-                    //   'assets/banner_transparent.png',
-                    //   alignment: Alignment.center,
+                    child: AppConfig.logo_type == "png" ?  Image.asset(
+                        'assets/banner_transparent.png',
+                        alignment: Alignment.center,
+                      ) : Image.asset(
+                        'assets/banner_transparent.svg',
+                        alignment: Alignment.center,
+                      ),
+                    // child: const FallbackImage(
+                    //   svgPath: 'assets/banner_transparent.svg',
+                    //   pngPath: 'assets/banner_transparent.png',
                     // ),
-                    child: const FallbackImage(
-                      svgPath: 'assets/banner_transparent.svg',
-                      pngPath: 'assets/banner_transparent.png',
-                    ),
                   ),
                 ),
                 const SizedBox(height: 48),
