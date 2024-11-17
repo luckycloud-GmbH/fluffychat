@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -84,8 +85,8 @@ class _LockScreenState extends State<LockScreen> {
                   child: AppConfig.logo_type == "png" ? Image.asset(
                       'assets/info-logo.png',
                       width: 256,
-                    ) : Image.asset(
-                      'assets/info-logo.png',
+                    ) : SvgPicture.asset(
+                      'assets/info-logo.svg',
                       width: 256,
                     ),
                   // child: FallbackImage(
