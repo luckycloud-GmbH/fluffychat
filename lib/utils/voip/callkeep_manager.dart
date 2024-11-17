@@ -79,7 +79,7 @@ class CallKeepManager {
         'okButton': 'ok',
         // Required to get audio in background when using Android 11
         'foregroundService': {
-          'channelId': 'com.fluffy.fluffychat',
+          'channelId': 'de.luckycloud.luckychat',
           'channelName': 'Foreground service for my app',
           'notificationTitle': '$appName is running on background',
           'notificationIcon': 'mipmap/ic_notification_launcher',

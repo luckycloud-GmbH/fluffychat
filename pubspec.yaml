@@ -2,7 +2,7 @@ name: fluffychat
 description: Chat with your friends.
 publish_to: none
 # On version bump also increase the build number for F-Droid
-version: 1.22.0+3535
+version: 1.22.0+3537
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -25,7 +25,7 @@ dependencies:
   dynamic_color: ^1.7.0
   emoji_picker_flutter: ^3.1.0
   emojis: ^0.9.9
-  #fcm_shared_isolate: ^0.1.0
+  fcm_shared_isolate: ^0.1.0
   file_picker: ^8.1.2
   file_selector: ^1.0.3
   flutter:
@@ -140,7 +140,7 @@ msix_config:
   display_name: FluffyChat
   publisher_display_name: FluffyChat
   publisher: CN=FluffyChat, O=Head of bad integration tests, L=Matrix, S=Internet, C=EU
-  identity_name: chat.fluffy.fluffychat
+  identity_name: de.luckycloud.luckychat
   logo_path: assets\logo.png
   capabilities: internetClient, location, microphone, webcam
   protocol_activation: https

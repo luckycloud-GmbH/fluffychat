@@ -30,14 +30,14 @@ abstract class AppConfig {
   static String _privacyUrl =
       'https://docs.luckycloud.de/de/data-protection-and-security';
   static String get privacyUrl => _privacyUrl;
-  static const String website = 'https://fluffychat.im';
+  static const String website = 'https://luckycloud.de';
   static const String enablePushTutorial =
       'https://github.com/luckycloud-GmbH/luckychat/wiki/Push-Notifications-without-Google-Services';
   static const String encryptionTutorial =
       'https://github.com/luckycloud-GmbH/luckychat/wiki/How‐to‐use‐end‐to‐end‐encryption‐in‐luckychat';
   static const String startChatTutorial =
       'https://github.com/luckycloud-GmbH/luckychat/wiki/How‐to‐Find‐Users‐in‐luckychat';
-  static const String appId = 'im.fluffychat.FluffyChat';
+  static const String appId = 'de.luckycloud.luckychat';
   static const String appOpenUrlScheme = 'im.fluffychat';
   static String _webBaseUrl = 'https://fluffychat.im/web';
   static String get webBaseUrl => _webBaseUrl;
@@ -50,7 +50,7 @@ abstract class AppConfig {
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
     host: 'github.com',
-    path: '/krille-chan/fluffychat/issues/new',
+    path: '/luckycloud-GmbH/luckychat/issues/new',
   );
   static bool renderHtml = true;
   static bool hideRedactedEvents = false;
@@ -69,10 +69,10 @@ abstract class AppConfig {
   static const String inviteLinkPrefix = 'https://matrix.to/#/';
   static const String deepLinkPrefix = 'im.fluffychat://chat/';
   static const String schemePrefix = 'matrix:';
-  static const String pushNotificationsChannelId = 'fluffychat_push';
-  static const String pushNotificationsAppId = 'chat.fluffy.fluffychat';
+  static const String pushNotificationsChannelId = 'luckychat_push';
+  static const String pushNotificationsAppId = 'de.luckycloud.luckychat';
   static const String pushNotificationsGatewayUrl =
-      'https://push.fluffychat.im/_matrix/push/v1/notify';
+      'https://sygnal2.lc-testing.de/_matrix/push/v1/notify';
   static const String pushNotificationsPusherFormat = 'event_id_only';
   static const String emojiFontName = 'Noto Emoji';
   static const String emojiFontUrl =

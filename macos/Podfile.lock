@@ -21,9 +21,9 @@ PODS:
     - FlutterMacOS
   - flutter_web_auth_2 (3.0.0):
     - FlutterMacOS
-  - flutter_webrtc (0.9.36):
+  - flutter_webrtc (0.11.3):
     - FlutterMacOS
-    - WebRTC-SDK (= 114.5735.08)
+    - WebRTC-SDK (= 125.6422.04)
   - FlutterMacOS (1.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -73,7 +73,7 @@ PODS:
     - FlutterMacOS
   - wakelock_plus (0.0.1):
     - FlutterMacOS
-  - WebRTC-SDK (114.5735.08)
+  - WebRTC-SDK (125.6422.04)
   - window_to_front (0.0.1):
     - FlutterMacOS
 
@@ -209,7 +209,7 @@ SPEC CHECKSUMS:
   video_compress: c896234f100791b5fef7f049afa38f6d2ef7b42f
   video_player_avfoundation: e9e6f9cae7d7a6d9b43519b0aab382bca60fcfd1
   wakelock_plus: 4783562c9a43d209c458cb9b30692134af456269
-  WebRTC-SDK: c24d2a6c9f571f2ed42297cb8ffba9557093142b
+  WebRTC-SDK: 8a2c8a1b3b8c1d6c0a5a9b8b0d6f6b1d6c0a5a9b
   window_to_front: 4cdc24ddd8461ad1a55fa06286d6a79d8b29e8d8
 
 PODFILE CHECKSUM: d0975b16fbdecb73b109d8fbc88aa77ffe4c7a8d
