@@ -1,4 +1,4 @@
-package chat.fluffy.fluffychat
+package de.luckycloud.luckychat
 
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.dart.DartExecutor
