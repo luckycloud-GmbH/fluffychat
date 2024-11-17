@@ -59,31 +59,27 @@ class HomeserverPickerView extends StatelessWidget {
               ),
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.only(
-          //     top: 48.0,
-          //     bottom: 16.0,
-          //     left: 48.0,
-          //     right: 48.0,
-          //   ),
-          //   child: ConstrainedBox(
-          //     constraints: BoxConstraints(
-          //       maxWidth: MediaQuery.of(context).size.width,
-          //       maxHeight: 80,
-          //     ),
-          //     child: AppConfig.logo_type == "png" ?  Image.asset(
-          //         'assets/banner_transparent.png',
-          //         alignment: Alignment.center,
-          //       ) : Image.asset(
-          //         'assets/banner_transparent.svg',
-          //         alignment: Alignment.center,
-          //       ),
-          //     // child: const FallbackImage(
-          //     //   svgPath: 'assets/banner_transparent.svg',
-          //     //   pngPath: 'assets/banner_transparent.png',
-          //     // ),
-          //   ),
-          // ),
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 48.0,
+              bottom: 16.0,
+              left: 48.0,
+              right: 48.0,
+            ),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width,
+                maxHeight: 80,
+              ),
+              child: AppConfig.logo_type == "png" ?  Image.asset(
+                  'assets/banner_transparent.png',
+                  alignment: Alignment.center,
+                ) : Image.asset(
+                  'assets/banner_transparent.svg',
+                  alignment: Alignment.center,
+                ),
+            ),
+          ),
           AutofillGroup(
             child: Column(
               // padding: const EdgeInsets.symmetric(horizontal: 8),
