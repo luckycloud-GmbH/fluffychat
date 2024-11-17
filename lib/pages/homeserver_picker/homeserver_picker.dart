@@ -43,9 +43,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   bool isLoading = false;
   bool isLoggingIn = false;
 
-  final TextEditingController homeserverController = TextEditingController(
-    text: AppConfig.defaultHomeserver,
-  );
+  final TextEditingController homeserverController = TextEditingController();
 
   String? error;
 
@@ -75,8 +73,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   /// login type.
   Future<void> checkHomeserverAction([_]) async {
     final homeserverInput =
-        AppConfig.defaultHomeserver;
-        // homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
+        // AppConfig.defaultHomeserver;
+        homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
 
     if (homeserverInput.isEmpty || !homeserverInput.contains('.')) {
       setState(() {
