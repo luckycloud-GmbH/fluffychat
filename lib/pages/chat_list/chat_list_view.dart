@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -25,6 +26,7 @@ class ChatListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
+    final cacheBustParam = AppConfig.version;
 
     return StreamBuilder<Object?>(
       stream: Matrix.of(context).onShareContentChanged.stream,
@@ -68,11 +70,11 @@ class ChatListView extends StatelessWidget {
                   ),
                 ),
                 child: AppConfig.logoType == "png"
-                    ? const FallbackImage(
-                        path: 'assets/banner_transparent.png',
+                    ? Image.network(
+                        'assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
                       )
-                    : const FallbackImage(
-                        path: 'assets/banner_transparent.svg',
+                    : SvgPicture.network(
+                        'assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
                       ),
               ),
               // Main Row Content

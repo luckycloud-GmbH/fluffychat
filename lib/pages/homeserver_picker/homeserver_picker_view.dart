@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -24,6 +25,7 @@ class HomeserverPickerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final cacheBustParam = AppConfig.version;
 
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
@@ -71,11 +73,13 @@ class HomeserverPickerView extends StatelessWidget {
                 maxWidth: MediaQuery.of(context).size.width,
                 maxHeight: 80,
               ),
-              child: AppConfig.logoType == "png" ?  const FallbackImage(
-                  path: 'assets/banner_transparent.png',
-                ) : const FallbackImage(
-                  path: 'assets/banner_transparent.svg',
-                ),
+              child: AppConfig.logoType == "png" 
+                  ? Image.network(
+                      'assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
+                    )
+                  : SvgPicture.network(
+                      'assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
+                    ),
             ),
           ),
           // Padding(
