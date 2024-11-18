@@ -28,7 +28,7 @@ class ChatEmojiPicker extends StatelessWidget {
               onBackspacePressed: controller.emojiPickerBackspace,
               config: Config(
                 emojiViewConfig: EmojiViewConfig(
-                  columns: 20,
+                  columns: 24,
                   noRecents: const NoRecent(),
                   backgroundColor: theme.colorScheme.onInverseSurface,
                 ),
