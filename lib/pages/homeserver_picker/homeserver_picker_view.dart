@@ -25,7 +25,8 @@ class HomeserverPickerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
+    final cacheBustParam = AppConfig.version;
+    
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
       appBar: controller.widget.addMultiAccount
@@ -72,13 +73,13 @@ class HomeserverPickerView extends StatelessWidget {
                 maxWidth: MediaQuery.of(context).size.width,
                 maxHeight: 80,
               ),
-              child: AppConfig.logo_type == "png" ?  Image.asset(
-                  'assets/banner_transparent.png',
-                  alignment: Alignment.center,
-                ) : SvgPicture.asset(
-                  'assets/banner_transparent.svg',
-                  alignment: Alignment.center,
-                ),
+              child: AppConfig.logoType == "png"
+                  ? Image.network(
+                      'assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
+                    )
+                  : SvgPicture.network(
+                      'assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
+                    ),
             ),
           ),
           AutofillGroup(
