@@ -72,9 +72,13 @@ class ChatListView extends StatelessWidget {
                 child: AppConfig.logoType == "png"
                     ? Image.network(
                         'assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
+                        fit: BoxFit.contain, // Ensures the image fits within the container
+                        width: double.infinity,
                       )
                     : SvgPicture.network(
                         'assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
+                        fit: BoxFit.contain, // Ensures the image fits within the container
+                        width: double.infinity,
                       ),
               ),
               // Main Row Content
