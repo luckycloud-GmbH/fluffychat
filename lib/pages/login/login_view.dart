@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
@@ -24,6 +25,7 @@ class LoginView extends StatelessWidget {
         .replaceFirst('https://', '');
     final title = L10n.of(context).logInTo(homeserver);
     final titleParts = title.split(homeserver);
+    final cacheBustParam = AppConfig.version;
 
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
@@ -47,17 +49,13 @@ class LoginView extends StatelessWidget {
                       maxWidth: MediaQuery.of(context).size.width,
                       maxHeight: 80,
                     ),
-                    child: AppConfig.logo_type == "png" ?  Image.asset(
-                        'assets/banner_transparent.png',
-                        alignment: Alignment.center,
-                      ) : Image.asset(
-                        'assets/banner_transparent.svg',
-                        alignment: Alignment.center,
-                      ),
-                    // child: const FallbackImage(
-                    //   svgPath: 'assets/banner_transparent.svg',
-                    //   pngPath: 'assets/banner_transparent.png',
-                    // ),
+                    child: AppConfig.logoType == "png" 
+                        ? Image.network(
+                            'assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
+                          )
+                        : SvgPicture.network(
+                            'assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
+                          ),
                   ),
                 ),
                 const SizedBox(height: 48),

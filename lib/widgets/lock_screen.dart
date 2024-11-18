@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -64,6 +65,8 @@ class _LockScreenState extends State<LockScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cacheBustParam = AppConfig.version;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(L10n.of(context).pleaseEnterYourPin),
@@ -81,17 +84,13 @@ class _LockScreenState extends State<LockScreen> {
               shrinkWrap: true,
               children: [
                 Center(
-                  child: AppConfig.logo_type == "png" ? Image.asset(
-                      'assets/info-logo.png',
-                      width: 256,
-                    ) : Image.asset(
-                      'assets/info-logo.png',
-                      width: 256,
-                    ),
-                  // child: FallbackImage(
-                  //   svgPath: 'assets/info-logo.svg',
-                  //   pngPath: 'assets/info-logo.png',
-                  // ),
+                  child: AppConfig.logoType == "png" 
+                      ? Image.network(
+                          'assets/assets/info_logo.png?cache_bust=$cacheBustParam',
+                        )
+                      : SvgPicture.network(
+                          'assets/assets/info_logo.svg?cache_bust=$cacheBustParam',
+                        ),
                 ),
                 TextField(
                   controller: _textEditingController,

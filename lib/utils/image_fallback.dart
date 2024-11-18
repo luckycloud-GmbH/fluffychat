@@ -4,12 +4,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluffychat/config/app_config.dart';
 
 class FallbackImage extends StatelessWidget {
-  final String svgPath;
-  final String pngPath;
+  final String path;
 
   const FallbackImage({
-    required this.svgPath,
-    required this.pngPath,
+    required this.path,
     Key? key,
   }) : super(key: key);
 
@@ -22,23 +20,37 @@ class FallbackImage extends StatelessWidget {
     }
   }
 
+  bool _isSvg(String path) {
+    return path.toLowerCase().endsWith('.svg');
+  }
+
   @override
   Widget build(BuildContext context) {
     final cacheBustParam = AppConfig.version;
     return FutureBuilder<bool>(
       key: ValueKey(cacheBustParam),
-      future: _assetExists(svgPath),
+      future: _assetExists(path),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data == true) {
-            return SvgPicture.asset(
-              svgPath,
-              alignment: Alignment.center,
-            );
+            // Display SVG if the file is SVG, otherwise display as image
+            if (_isSvg(path)) {
+              return SvgPicture.asset(
+                path,
+                alignment: Alignment.center,
+              );
+            } else {
+              return Image.asset(
+                path,
+                alignment: Alignment.center,
+              );
+            }
           } else {
-            return Image.asset(
-              pngPath,
-              alignment: Alignment.center,
+            // Fallback to placeholder if the asset doesn't exist
+            return const Icon(
+              Icons.broken_image,
+              size: 50,
+              color: Colors.grey,
             );
           }
         }
