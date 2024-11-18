@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class EmptyPage extends StatelessWidget {
   static const double _width = 400;
@@ -20,14 +21,27 @@ class EmptyPage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       body: Container(
         alignment: Alignment.center,
-        child: Image.asset(
-          'assets/logo_transparent.png',
-          key: ValueKey(cacheBustParam),
-          color: theme.colorScheme.surfaceContainerHigh,
-          width: width,
-          height: width,
-          filterQuality: FilterQuality.medium,
-        ),
+        // child: Image.asset(
+        //   'assets/logo_transparent.png',
+        //   key: ValueKey(cacheBustParam),
+        //   color: theme.colorScheme.surfaceContainerHigh,
+        //   width: width,
+        //   height: width,
+        //   filterQuality: FilterQuality.medium,
+        // ),
+        child: AppConfig.logoType == "png" 
+            ? Image.network(
+                'assets/assets/logo_transparent.png?cache_bust=$cacheBustParam',
+                color: theme.colorScheme.surfaceContainerHigh,
+                width: width,
+                height: width,
+              )
+            : SvgPicture.network(
+                'assets/assets/logo_transparent.svg?cache_bust=$cacheBustParam',
+                color: theme.colorScheme.surfaceContainerHigh,
+                width: width,
+                height: width,
+              ),
       ),
     );
   }
