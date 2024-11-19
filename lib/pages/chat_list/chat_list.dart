@@ -343,6 +343,12 @@ class ChatListController extends State<ChatList>
         searchController.text,
         limit: 20,
       );
+      userSearchResult = SearchUserDirectoryResponse(
+        limited: userSearchResult.limited,
+        results: userSearchResult.results.where((profile) {
+          return !profile.displayName!.startsWith('api_');
+        }).toList(),
+      );
     } catch (e, s) {
       Logs().w('Searching has crashed', e, s);
       ScaffoldMessenger.of(context).showSnackBar(
