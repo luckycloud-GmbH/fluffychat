@@ -1,4 +1,4 @@
-name: fluffychat
+name: luckychat
 description: Chat with your friends.
 publish_to: none
 # On version bump also increase the build number for F-Droid
@@ -136,15 +136,15 @@ flutter:
         - asset: fonts/NotoEmoji/NotoColorEmoji.ttf
 
 msix_config:
-  display_name: FluffyChat
-  publisher_display_name: FluffyChat
-  publisher: CN=FluffyChat, O=Head of bad integration tests, L=Matrix, S=Internet, C=EU
+  display_name: luckychat
+  publisher_display_name: luckychat
+  publisher: CN=luckychat, O=luckycloud GmbH, L=luckycloud GmbH, S=Internet, C=DE
   identity_name: de.luckycloud.luckychat
   logo_path: assets\logo.png
   capabilities: internetClient, location, microphone, webcam
   protocol_activation: https
-  app_uri_handler_hosts: fluffychat.im, matrix.to
-  execution_alias: fluffychat
+  app_uri_handler_hosts: luckycloud.de, luckycloud.de
+  execution_alias: luckychat
   sign_msix: false
   install_certificate: false
 
