@@ -9,7 +9,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>FluffyChat</string>
+	<string>luckychat</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,7 +17,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>fluffychat</string>
+	<string>luckychat</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -30,11 +30,11 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>im.fluffychat.app.uris</string>
+			<string>de.luckycloud.luckychat.uris</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>ShareMedia</string>
-				<string>im.fluffychat</string>
+				<string>de.luckycloud.luckychat</string>
 				<string>matrix</string>
 			</array>
 		</dict>
@@ -52,30 +52,29 @@
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Play audio and voice messages on bluetooth devices</string>
 	<key>NSCalendarsUsageDescription</key>
-	<string>Share calendar dates with your contacts in FluffyChat.</string>
+	<string>Share calendar dates with your contacts in luckychat.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Open the camera and take a picture to share them with your contacts on FluffyChat.</string>
+	<string>“This app requires access to the camera so that you can take photos for your profile, scan QR codes for quick logins and take pictures for chatting with other users. The camera is only used when you are actively using one of these functions.”</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Share contacts with your contacts in FluffyChat.</string>
+	<string>Share contacts with your contacts in luckychat.</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>FluffyChat uses an app lock for an additional security level</string>
+	<string>luckychat uses an app lock for an additional security level</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Share your location with your contacts in FluffyChat.</string>
+	<string>Share your location with your contacts in luckychat.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Share your location with your contacts in FluffyChat.</string>
+	<string>Share your location with your contacts in luckychat.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Share your location with your contacts in FluffyChat.</string>
+	<string>Share your location with your contacts in luckychat.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Record voice message and share them with your contacts on FluffyChat.</string>
+	<string>Record voice message and share them with your contacts on luckychat.</string>
 	<key>NSMotionUsageDescription</key>
-	<string>Share motions with your contacts in FluffyChat.</string>
+	<string>Share motions with your contacts in luckychat.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Open photos from your gallery and share them with your contacts on FluffyChat.</string>
+	<string>Open photos from your gallery and share them with your contacts on luckychat.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Share data with your contacts in FluffyChat.</string>
+	<string>Share data with your contacts in luckychat.</string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>audio</string>
 		<string>fetch</string>
 		<string>processing</string>
 		<string>remote-notification</string>

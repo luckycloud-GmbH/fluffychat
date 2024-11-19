@@ -27,7 +27,7 @@
 			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C1005C41261071B5002F4F32;
-			remoteInfo = "FluffyChat Share";
+			remoteInfo = "luckychat Share";
 		};
 /* End PBXContainerItemProxy section */
 
