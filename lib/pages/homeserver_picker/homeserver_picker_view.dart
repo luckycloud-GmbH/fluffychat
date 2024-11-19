@@ -63,7 +63,7 @@ class HomeserverPickerView extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(
-              top: 48.0,
+              top: 32.0,
               bottom: 16.0,
               left: 48.0,
               right: 48.0,
@@ -88,7 +88,7 @@ class HomeserverPickerView extends StatelessWidget {
               // padding: const EdgeInsets.symmetric(horizontal: 8),
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                const SizedBox(height: 48),
+                const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FractionallySizedBox(
