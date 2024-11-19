@@ -2805,5 +2805,10 @@
   "serverInformation": "Server information:",
   "name": "Name",
   "version": "Version",
-  "website": "Website"
+  "website": "Website",
+  "homeserverHintText": "Enter your chat URL",
+  "@homeserverHintText": {
+    "type": "text",
+    "placeholders": {}
+  }
 }

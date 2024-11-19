@@ -142,6 +142,15 @@ class HomeserverPickerView extends StatelessWidget {
                         errorStyle: const TextStyle(color: Colors.orange),
                         hintText: L10n.of(context)!.password,
                         contentPadding: const EdgeInsets.all(16.0),
+                        suffixIcon: IconButton(
+                        onPressed: controller.toggleShowPassword,
+                        icon: Icon(
+                          controller.showPassword
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
+                          color: Colors.black,
+                        ),
+                      ),
                       ),
                     ),
                   ),
@@ -162,7 +171,7 @@ class HomeserverPickerView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(34.0),
                           borderSide: BorderSide.none,
                         ),
-                        hintText: AppConfig.homeserverHintText,
+                        hintText: L10n.of(context)!.homeserverHintText,
                         errorText: controller.error,
                         errorStyle: const TextStyle(color: Colors.orange),
                         contentPadding: const EdgeInsets.all(16.0),
