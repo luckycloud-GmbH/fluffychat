@@ -167,7 +167,7 @@ class HomeserverPickerView extends StatelessWidget {
                             borderRadius: BorderRadius.circular(34.0),
                             borderSide: BorderSide.none,
                           ),
-                          hintText: AppConfig.homeserverHintText,
+                          hintText: L10n.of(context)!.homeserverHintText,
                           errorText: controller.error,
                           errorStyle: const TextStyle(color: Colors.orange),
                           contentPadding: const EdgeInsets.all(16.0),
