@@ -18,7 +18,7 @@ flutter build apk --release
 
 # install and launch APK
 flutter install
-adb shell am start -n chat.fluffy.fluffychat/chat.fluffy.fluffychat.MainActivity
+adb shell am start -n chat.fluffy.fluffychat/de.luckycloud.luckychat.MainActivity
 
 sleep 5
 
