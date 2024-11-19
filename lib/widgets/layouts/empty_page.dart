@@ -30,14 +30,14 @@ class EmptyPage extends StatelessWidget {
         //   filterQuality: FilterQuality.medium,
         // ),
         child: AppConfig.logoType == "png" 
-            ? Image.network(
-                'assets/assets/logo_transparent.png?cache_bust=$cacheBustParam',
+            ? Image.asset(
+                'assets/logo_transparent.png',
                 color: theme.colorScheme.surfaceContainerHigh,
                 width: width,
                 height: width,
               )
-            : SvgPicture.network(
-                'assets/assets/logo_transparent.svg?cache_bust=$cacheBustParam',
+            : SvgPicture.asset(
+                'assets/logo_transparent.svg',
                 color: theme.colorScheme.surfaceContainerHigh,
                 width: width,
                 height: width,

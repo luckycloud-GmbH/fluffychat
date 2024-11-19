@@ -85,11 +85,11 @@ class _LockScreenState extends State<LockScreen> {
               children: [
                 Center(
                   child: AppConfig.logoType == "png"
-                      ? Image.network(
-                          'assets/assets/info_logo.png?cache_bust=$cacheBustParam',
+                      ? Image.asset(
+                          'assets/info_logo.png',
                         )
-                      : SvgPicture.network(
-                          'assets/assets/info_logo.svg?cache_bust=$cacheBustParam',
+                      : SvgPicture.asset(
+                          'assets/info_logo.svg',
                         ),
                 ),
                 TextField(

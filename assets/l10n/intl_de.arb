@@ -2849,5 +2849,10 @@
   "manageAccount": "Konto verwalten",
   "@manageAccount": {},
   "continueText": "Fortfahren",
-  "@continueText": {}
+  "@continueText": {},
+  "homeserverHintText": "Deine Chat URL eingeben",
+  "@homeserverHintText": {
+    "type": "text",
+    "placeholders": {}
+  }
 }

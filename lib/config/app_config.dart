@@ -26,7 +26,7 @@ abstract class AppConfig {
   static const Color primaryColorLight = Color(0xFFcdeaba);
   static const Color secondaryColor = Color(0xFFADADAD);
   static Color backgroundColor = Color(0xFF008000);
-  static String homeserverHintText = 'Deine Chat URL eingeben';
+  // static String homeserverHintText = 'Deine Chat URL eingeben';
   static String _privacyUrl =
       'https://docs.luckycloud.de/de/data-protection-and-security';
   static String get privacyUrl => _privacyUrl;
