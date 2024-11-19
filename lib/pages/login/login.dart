@@ -1,9 +1,12 @@
 import 'dart:async';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -288,8 +291,29 @@ class LoginController extends State<Login> {
 
   static int sendAttempt = 0;
 
+  String? defaultHomeserver;
+
+  void getDefaultHomeServer() async {
+    try {
+      defaultHomeserver =
+          await const FlutterSecureStorage().read(key: SettingKeys.defaultHomeserver);
+    } catch (e, s) {
+      Logs().d('Unable to read PIN from Secure storage', e, s);
+    }
+    setState(() {
+      defaultHomeserver ??= AppConfig.defaultHomeserver;
+    });
+  }
+
   @override
-  Widget build(BuildContext context) => LoginView(this);
+  void initState() {
+    super.initState();
+
+    getDefaultHomeServer();
+  }
+
+  @override
+  Widget build(BuildContext context) => LoginView(this, defaultHomeserver);
 }
 
 extension on String {

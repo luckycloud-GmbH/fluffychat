@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -18,6 +19,7 @@ import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import '../../config/setting_keys.dart';
 import '../../utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
@@ -113,7 +115,6 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         setState(() => isLoading = false);
       }
     }
-
   }
 
   List<LoginFlow>? loginFlows;
@@ -180,7 +181,9 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   void login() async {
     await checkHomeserverAction();
-    if (usernameController.text.isEmpty && passwordController.text.isEmpty && supportsSso) {
+    if (usernameController.text.isEmpty &&
+        passwordController.text.isEmpty &&
+        supportsSso) {
       ssoLoginAction();
     } else {
       loginAction();
@@ -246,6 +249,10 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       return setState(() => loading = false);
     }
 
+    const FlutterSecureStorage().write(
+      key: SettingKeys.defaultHomeserver,
+      value: homeserverController.text,
+    );
     if (mounted) setState(() => loading = false);
   }
 
@@ -347,7 +354,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
                     decoration: InputDecoration(
                       hintText: hintText,
                       filled: true,
-                      fillColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+                      fillColor:
+                          Theme.of(context).colorScheme.surfaceContainerHighest,
                       contentPadding: EdgeInsets.all(16.0),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(34.0),
@@ -381,7 +389,6 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       },
     );
   }
-
 
   void passwordForgotten() async {
     // Custom dialog for email input
@@ -448,15 +455,31 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   static int sendAttempt = 0;
 
+  String? defaultHomeserver;
+
+  void getDefaultHomeServer() async {
+    try {
+      defaultHomeserver = await const FlutterSecureStorage()
+          .read(key: SettingKeys.defaultHomeserver);
+    } catch (e, s) {
+      Logs().d('Unable to read PIN from Secure storage', e, s);
+    }
+    setState(() {
+      defaultHomeserver ??= AppConfig.defaultHomeserver;
+    });
+  }
+
   @override
   void initState() {
     _checkTorBrowser();
     super.initState();
     checkHomeserverAction();
+    getDefaultHomeServer();
   }
 
   @override
-  Widget build(BuildContext context) => HomeserverPickerView(this);
+  Widget build(BuildContext context) =>
+      HomeserverPickerView(this, defaultHomeserver);
 
   Future<void> restoreBackup() async {
     final picked = await selectFiles(context);

@@ -11,8 +11,9 @@ import '../../utils/image_fallback.dart';
 
 class LoginView extends StatelessWidget {
   final LoginController controller;
+  String? defaultHomeserver;
 
-  const LoginView(this.controller, {super.key});
+  LoginView(this.controller, this.defaultHomeserver, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +52,10 @@ class LoginView extends StatelessWidget {
                     ),
                     child: AppConfig.logoType == "png"
                         ? Image.network(
-                          'assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
+                            'https://$defaultHomeserver/assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
                           )
                         : SvgPicture.network(
-                            'assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
+                            'https://$defaultHomeserver/assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
                           ),
                   ),
                 ),
@@ -121,7 +122,8 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FractionallySizedBox(
-                    widthFactor: MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4,
+                    widthFactor:
+                        MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppConfig.primaryColor,
@@ -138,7 +140,8 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FractionallySizedBox(
-                  widthFactor: MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4,
+                    widthFactor:
+                        MediaQuery.of(context).size.width < 450 ? 0.6 : 0.4,
                     child: TextButton(
                       onPressed: controller.loading
                           ? () {}
