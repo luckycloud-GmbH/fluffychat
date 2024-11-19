@@ -69,17 +69,23 @@ class ChatListView extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: AppConfig.logoType == "png"
-                    ? Image.network(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (AppConfig.logoType == "png")
+                      Image.network(
                         'assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
                         fit: BoxFit.contain, // Ensures the image fits within the container
-                        width: double.infinity,
+                        height: 60, // Adjust height as needed
                       )
-                    : SvgPicture.network(
+                    else
+                      SvgPicture.network(
                         'assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
                         fit: BoxFit.contain, // Ensures the image fits within the container
-                        width: double.infinity,
+                        height: 60, // Adjust height as needed
                       ),
+                  ],
+                ),
               ),
               // Main Row Content
               Expanded(
