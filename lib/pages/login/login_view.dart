@@ -50,11 +50,11 @@ class LoginView extends StatelessWidget {
                       maxHeight: 80,
                     ),
                     child: AppConfig.logoType == "png"
-                        ? Image.network(
-                          'assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
+                        ? Image.asset(
+                          'assets/banner_transparent.png',
                           )
-                        : SvgPicture.network(
-                            'assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
+                        : SvgPicture.asset(
+                            'assets/banner_transparent.svg',
                           ),
                   ),
                 ),

@@ -74,12 +74,13 @@ class HomeserverPickerView extends StatelessWidget {
                 maxHeight: 80,
               ),
               child: AppConfig.logoType == "png"
-                  ? Image.network(
-                      'assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
-                    )
-                  : SvgPicture.network(
-                      'assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
-                    ),
+                  ? Image.asset(
+                  'assets/banner_transparent.png',
+                  alignment: Alignment.center,
+                ) : SvgPicture.asset(
+                  'assets/banner_transparent.svg',
+                  alignment: Alignment.center,
+                ),
             ),
           ),
           AutofillGroup(

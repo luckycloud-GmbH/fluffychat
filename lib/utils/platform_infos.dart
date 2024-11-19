@@ -75,13 +75,13 @@ abstract class PlatformInfos {
         ),
       ],
       applicationIcon: AppConfig.logoType == "png" 
-          ? Image.network(
-              'assets/assets/logo.png?cache_bust=$cacheBustParam',
+          ? Image.asset(
+              'assets/logo.png',
               width: 64,
               height: 64,
             )
-          : SvgPicture.network(
-              'assets/assets/logo.svg?cache_bust=$cacheBustParam',
+          : SvgPicture.asset(
+              'assets/logo.svg',
               width: 64,
               height: 64,
             ),
