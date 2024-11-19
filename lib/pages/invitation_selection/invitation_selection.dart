@@ -99,7 +99,11 @@ class InvitationSelectionController extends State<InvitationSelection> {
       setState(() => loading = false);
     }
     setState(() {
-      foundProfiles = List<Profile>.from(response.results);
+      foundProfiles = List<Profile>.from(response.results
+        .where((profile) {
+          return !profile.displayName!.startsWith('api_');
+        }),
+      );
       if (text.isValidMatrixId &&
           foundProfiles.indexWhere((profile) => text == profile.userId) == -1) {
         setState(

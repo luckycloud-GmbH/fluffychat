@@ -54,7 +54,9 @@ class NewPrivateChatController extends State<NewPrivateChat> {
   Future<List<Profile>> _searchUser(String searchTerm) async {
     final result =
         await Matrix.of(context).client.searchUserDirectory(searchTerm);
-    final profiles = result.results;
+    final profiles = result.results.where((profile) {
+          return !profile.displayName!.startsWith('api_');
+        }).toList();
 
     if (searchTerm.isValidMatrixId &&
         searchTerm.sigil == '@' &&
