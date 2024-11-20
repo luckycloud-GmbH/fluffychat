@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:fluffychat/utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -229,22 +230,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
     initMatrix();
     if (PlatformInfos.isWeb) {
-      initConfig().then((_) => initSettings());
+      Utils.initConfig().then((_) => initSettings());
     } else {
       initSettings();
-    }
-  }
-
-  Future<void> initConfig() async {
-    try {
-      final configJsonString =
-          utf8.decode((await http.get(Uri.parse('config.json'))).bodyBytes);
-      final configJson = json.decode(configJsonString);
-      AppConfig.loadFromJson(configJson);
-    } on FormatException catch (_) {
-      Logs().v('[ConfigLoader] config.json not found');
-    } catch (e) {
-      Logs().v('[ConfigLoader] config.json not found', e);
     }
   }
 

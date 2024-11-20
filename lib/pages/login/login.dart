@@ -291,29 +291,8 @@ class LoginController extends State<Login> {
 
   static int sendAttempt = 0;
 
-  String? defaultHomeserver;
-
-  void getDefaultHomeServer() async {
-    try {
-      defaultHomeserver =
-          await const FlutterSecureStorage().read(key: SettingKeys.defaultHomeserver);
-    } catch (e, s) {
-      Logs().d('Unable to read PIN from Secure storage', e, s);
-    }
-    setState(() {
-      defaultHomeserver ??= AppConfig.defaultHomeserver;
-    });
-  }
-
   @override
-  void initState() {
-    super.initState();
-
-    getDefaultHomeServer();
-  }
-
-  @override
-  Widget build(BuildContext context) => LoginView(this, defaultHomeserver);
+  Widget build(BuildContext context) => LoginView(this);
 }
 
 extension on String {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jovial_svg/jovial_svg.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -16,11 +17,9 @@ import '../../utils/image_fallback.dart';
 
 class HomeserverPickerView extends StatelessWidget {
   final HomeserverPickerController controller;
-  String? defaultHomeserver;
 
   HomeserverPickerView(
-    this.controller,
-    this.defaultHomeserver, {
+    this.controller, {
     super.key,
   });
 
@@ -28,6 +27,7 @@ class HomeserverPickerView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cacheBustParam = AppConfig.version;
+    final defaultHomeserver = AppConfig.defaultHomeserver;
 
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
@@ -71,17 +71,24 @@ class HomeserverPickerView extends StatelessWidget {
                 left: 48.0,
                 right: 48.0,
               ),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width,
-                  maxHeight: 80,
-                ),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 80,
                 child: AppConfig.logoType == "png"
                     ? Image.network(
-                        'https://$defaultHomeserver/assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
+                        'https://web-${defaultHomeserver}/assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
+                        errorBuilder: (context, exception, stackTrace) =>
+                            Image.asset('assets/banner_transparent.png'),
                       )
-                    : SvgPicture.network(
-                        'https://$defaultHomeserver/assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
+                    : ScalableImageWidget.fromSISource(
+                        si: ScalableImageSource.fromSvgHttpUrl(
+                          Uri.parse(
+                            'https://web-${defaultHomeserver}/assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
+                          ),
+                        ),
+                        onError: (context) => SvgPicture.asset(
+                          'assets/banner_transparent.svg',
+                        ),
                       ),
               ),
             ),

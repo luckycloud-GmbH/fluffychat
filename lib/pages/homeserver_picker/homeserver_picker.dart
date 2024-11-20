@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fluffychat/utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -249,10 +250,11 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       return setState(() => loading = false);
     }
 
-    const FlutterSecureStorage().write(
+    await const FlutterSecureStorage().write(
       key: SettingKeys.defaultHomeserver,
       value: homeserverController.text,
     );
+    await Utils.initConfig();
     if (mounted) setState(() => loading = false);
   }
 
@@ -457,29 +459,16 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   String? defaultHomeserver;
 
-  void getDefaultHomeServer() async {
-    try {
-      defaultHomeserver = await const FlutterSecureStorage()
-          .read(key: SettingKeys.defaultHomeserver);
-    } catch (e, s) {
-      Logs().d('Unable to read PIN from Secure storage', e, s);
-    }
-    setState(() {
-      defaultHomeserver ??= AppConfig.defaultHomeserver;
-    });
-  }
-
   @override
   void initState() {
     _checkTorBrowser();
     super.initState();
     checkHomeserverAction();
-    getDefaultHomeServer();
   }
 
   @override
   Widget build(BuildContext context) =>
-      HomeserverPickerView(this, defaultHomeserver);
+      HomeserverPickerView(this);
 
   Future<void> restoreBackup() async {
     final picked = await selectFiles(context);
