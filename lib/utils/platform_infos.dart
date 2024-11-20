@@ -51,28 +51,30 @@ abstract class PlatformInfos {
       context: context,
       children: [
         Text('Version: $version'),
-        TextButton.icon(
-          onPressed: () => launchUrlString(AppConfig.sourceCodeUrl),
-          icon: const Icon(Icons.source_outlined),
-          label: Text(L10n.of(context).sourceCode),
-        ),
-        TextButton.icon(
-          onPressed: () => launchUrlString(AppConfig.emojiFontUrl),
-          icon: const Icon(Icons.emoji_emotions_outlined),
-          label: const Text(AppConfig.emojiFontName),
-        ),
-        Builder(
-          builder: (innerContext) {
-            return TextButton.icon(
-              onPressed: () {
-                context.go('/logs');
-                Navigator.of(innerContext).pop();
-              },
-              icon: const Icon(Icons.list_outlined),
-              label: const Text('Logs'),
-            );
-          },
-        ),
+        const SizedBox(height: 16),
+        Text('Build: $cacheBustParam'),
+        // TextButton.icon(
+        //   onPressed: () => launchUrlString(AppConfig.sourceCodeUrl),
+        //   icon: const Icon(Icons.source_outlined),
+        //   label: Text(L10n.of(context).sourceCode),
+        // ),
+        // TextButton.icon(
+        //   onPressed: () => launchUrlString(AppConfig.emojiFontUrl),
+        //   icon: const Icon(Icons.emoji_emotions_outlined),
+        //   label: const Text(AppConfig.emojiFontName),
+        // ),
+        // Builder(
+        //   builder: (innerContext) {
+        //     return TextButton.icon(
+        //       onPressed: () {
+        //         context.go('/logs');
+        //         Navigator.of(innerContext).pop();
+        //       },
+        //       icon: const Icon(Icons.list_outlined),
+        //       label: const Text('Logs'),
+        //     );
+        //   },
+        // ),
       ],
       applicationIcon: AppConfig.logoType == "png" 
           ? Image.network(
