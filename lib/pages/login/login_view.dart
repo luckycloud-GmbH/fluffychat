@@ -122,6 +122,15 @@ class LoginView extends StatelessWidget {
                         errorStyle: const TextStyle(color: Colors.orange),
                         hintText: L10n.of(context)!.password,
                         contentPadding: const EdgeInsets.all(16.0),
+                        suffixIcon: IconButton(
+                          onPressed: controller.toggleShowPassword,
+                          icon: Icon(
+                            controller.showPassword
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     ),
                   ),

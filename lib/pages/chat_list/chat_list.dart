@@ -15,6 +15,8 @@ import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:uni_links/uni_links.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/send_file_dialog.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
@@ -400,6 +402,8 @@ class ChatListController extends State<ChatList>
     if (unfocus) searchFocusNode.unfocus();
   }
 
+  bool isConfirmed = false;
+
   bool isTorBrowser = false;
 
   BoxConstraints? snappingSheetContainerSize;
@@ -512,7 +516,10 @@ class ChatListController extends State<ChatList>
   @override
   void initState() {
     _initReceiveSharingIntent();
-
+    // for iOS
+    if (PlatformInfos.isIOS) {
+      _checkFirstLogin();
+    }
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
     _hackyWebRTCFixForWeb();
@@ -885,6 +892,133 @@ class ChatListController extends State<ChatList>
         ),
       );
     }
+  }
+
+  Future<void> _checkFirstLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstLogin = prefs.getBool('isFirstLogin') ?? true;
+
+    if (isFirstLogin) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _showTermsDialog();
+      });
+    }
+  }
+
+  void _showTermsDialog() {
+    final theme = Theme.of(context);
+    final String languageCode = Localizations.localeOf(context).languageCode;
+    final String termsOfUseUrl = languageCode == 'de'
+        ? AppConfig.termsOfUseUrlDe
+        : AppConfig.termsOfUseUrlEn;
+    final String termsAndConditionsUrl = languageCode == 'de'
+        ? AppConfig.termsAndConditionsDe
+        : AppConfig.termsAndConditionsEn;
+    showDialog(
+      context: context,
+      barrierDismissible: false, // Prevent closing by tapping outside
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: Center( // Center the title
+                child: Text(
+                  L10n.of(context).termsDialogTitile,
+                  textAlign: TextAlign.center, // Ensure text alignment is also centered
+                ),
+              ),
+              content: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(L10n.of(context).termsDialogDesc),
+                    ),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: InkWell(
+                        child: Text(
+                          L10n.of(context).termsOfUse,
+                          style: TextStyle(color: theme.colorScheme.primary, decoration: TextDecoration.underline),
+                        ),
+                        onTap: () async {
+                          if (await canLaunch(termsOfUseUrl)) {
+                            await launch(termsOfUseUrl);
+                          } else {
+                            throw 'Could not launch $termsOfUseUrl';
+                          }
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: InkWell(
+                        child: Text(
+                          L10n.of(context).termsAndConditions,
+                          style: TextStyle(color: theme.colorScheme.primary, decoration: TextDecoration.underline),
+                        ),
+                        onTap: () async {
+                          if (await canLaunch(termsAndConditionsUrl)) {
+                            await launch(termsAndConditionsUrl);
+                          } else {
+                            throw 'Could not launch $termsAndConditionsUrl';
+                          }
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: isConfirmed,
+                          onChanged: (value) {
+                            setState(() {
+                              isConfirmed = value!;
+                            });
+                          },
+                        ),
+                        Expanded(child: Text(L10n.of(context).confirm)),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center, // Center buttons
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        // Exit the app if canceled
+                        SystemNavigator.pop();
+                      },
+                      child: Text(L10n.of(context).cancel),
+                    ),
+                    SizedBox(width: 30),
+                    TextButton(
+                      onPressed: isConfirmed
+                          ? () async {
+                              // Save confirmation to SharedPreferences
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                              prefs.setBool('isFirstLogin', false);
+
+                              // Close dialog and proceed
+                              Navigator.of(context).pop();
+                            }
+                          : null, // Disable button if not confirmed
+                      child: Text(L10n.of(context).ok),
+                    ),
+                  ],
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
   }
 
   void cancelAction() {

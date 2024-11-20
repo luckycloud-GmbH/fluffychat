@@ -158,8 +158,8 @@ class HomeserverPickerView extends StatelessWidget {
                             onPressed: controller.toggleShowPassword,
                             icon: Icon(
                               controller.showPassword
-                                  ? Icons.visibility_off_outlined
-                                  : Icons.visibility_outlined,
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
                               color: Colors.black,
                             ),
                           ),

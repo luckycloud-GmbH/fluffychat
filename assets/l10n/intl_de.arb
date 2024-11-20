@@ -2854,5 +2854,25 @@
   "@homeserverHintText": {
     "type": "text",
     "placeholders": {}
+  },
+  "termsDialogTitile": "Bestätigung der Nutzungsbedingungen",
+  "@termsDialogTitile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termsDialogDesc": "Bitte bestätigen Sie die Nutzungsbedingungen von luckychat und unsere Allgemeinen Geschäftsbedingungen.",
+  "@termsDialogDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termsOfUse": "Nutzungsbedingungen",
+  "@termsOfUse": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termsAndConditions": "Allgemeine Geschäftsbedingungen",
+  "@termsAndConditions": {
+    "type": "text",
+    "placeholders": {}
   }
 }

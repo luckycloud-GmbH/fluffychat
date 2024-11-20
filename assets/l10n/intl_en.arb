@@ -2806,8 +2806,36 @@
   "name": "Name",
   "version": "Version",
   "website": "Website",
+  "sendUncompressed": "Send uncompressed",
+  "boldText": "Bold text",
+  "italicText": "Italic text",
+  "strikeThrough": "Strikethrough",
+  "pleaseFillOut": "Please fill out",
+  "invalidUrl": "Invalid url",
+  "addLink": "Add link",
+  "unableToJoinChat": "Unable to join chat. Maybe the other party has already closed the conversation.",
   "homeserverHintText": "Enter your chat URL",
   "@homeserverHintText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termsDialogTitile": "Terms Confirmation",
+  "@termsDialogTitile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termsDialogDesc": "Please confirm the terms of use of luckychat and our terms and conditions.",
+  "@termsDialogDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termsOfUse": "Terms of Use",
+  "@termsOfUse": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termsAndConditions": "Terms and Conditions",
+  "@termsAndConditions": {
     "type": "text",
     "placeholders": {}
   }
