@@ -2297,7 +2297,7 @@
   "@jump": {},
   "openLinkInBrowser": "Link im Browser öffnen",
   "@openLinkInBrowser": {},
-  "reportErrorDescription": "😭 Oh nein. Etwas ist schief gelaufen. Wenn du möchtest, kannst du den Bug bei den Entwicklern melden.",
+  "reportErrorDescription": "Es ist ein Fehler aufgetreten, bitte senden Sie die Fehlermeldung an den Luckycloud-Support. \nsupport@luckycloud.de",
   "@reportErrorDescription": {},
   "report": "Melden",
   "@report": {},
