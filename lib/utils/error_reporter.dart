@@ -23,16 +23,16 @@ class ErrorReporter {
       context: context,
       builder: (context) => AlertDialog.adaptive(
         title: Text(L10n.of(context).reportErrorDescription),
-        content: SizedBox(
-          height: 256,
-          width: 256,
-          child: SingleChildScrollView(
-            child: HighlightView(
-              text,
-              language: 'sh',
-              theme: shadesOfPurpleTheme,
-            ),
-          ),
+        content: const SizedBox(
+          height: 32,
+          // width: 256,
+          // child: SingleChildScrollView(
+          //   child: HighlightView(
+          //     text,
+          //     language: 'sh',
+          //     theme: shadesOfPurpleTheme,
+          //   ),
+          // ),
         ),
         actions: [
           AdaptiveDialogAction(

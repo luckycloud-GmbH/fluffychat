@@ -2447,7 +2447,7 @@
   "@jump": {},
   "openLinkInBrowser": "Open link in browser",
   "@openLinkInBrowser": {},
-  "reportErrorDescription": "😭 Oh no. Something went wrong. If you want, you can report this bug to the developers.",
+  "reportErrorDescription": "An error has occurred, please send the error message to luckycloud support.\nsupport@luckycloud.de",
   "@reportErrorDescription": {},
   "report": "report",
   "@report": {},
