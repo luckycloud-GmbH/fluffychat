@@ -993,7 +993,7 @@ class ChatListController extends State<ChatList>
                     TextButton(
                       onPressed: () {
                         // Exit the app if canceled
-                        SystemNavigator.pop();
+                        exit(0);
                       },
                       child: Text(L10n.of(context).cancel),
                     ),
