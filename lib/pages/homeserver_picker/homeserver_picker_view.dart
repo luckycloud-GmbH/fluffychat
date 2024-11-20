@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jovial_svg/jovial_svg.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -77,8 +78,15 @@ class HomeserverPickerView extends StatelessWidget {
                   ? Image.network(
                       'assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
                     )
-                  : SvgPicture.network(
-                      'assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
+                  : ScalableImageWidget.fromSISource(
+                      si: ScalableImageSource.fromSvgHttpUrl(
+                        Uri.parse(
+                          'assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
+                        ),
+                      ),
+                      onError: (context) => SvgPicture.asset(
+                        'assets/banner_transparent.svg',
+                      ),
                     ),
             ),
           ),

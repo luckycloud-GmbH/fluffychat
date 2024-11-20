@@ -61,6 +61,7 @@ dependencies:
   image: ^4.1.7
   image_picker: ^1.1.0
   intl: any
+  jovial_svg: ^1.1.23
   just_audio: ^0.9.39
   latlong2: ^0.9.1
   linkify: ^5.0.0
