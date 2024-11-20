@@ -11,6 +11,7 @@ WORKDIR /app
 RUN ./scripts/prepare-web.sh
 COPY config.* /app/
 RUN flutter pub get
+RUN flutter gen-l10n
 RUN flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps
 
 FROM docker.io/nginx:alpine

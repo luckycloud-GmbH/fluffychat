@@ -52,6 +52,16 @@ abstract class AppConfig {
     host: 'github.com',
     path: '/luckycloud-GmbH/luckychat/issues/new',
   );
+  // for terms dialog
+  static const String termsAndConditionsEn =
+      'https://luckycloud.de/en/legal/documents/download/tac/current/status';
+  static const String termsAndConditionsDe =
+      'https://luckycloud.de/de/rechtliches/dokumente/download/tac/current/status';
+  static const String termsOfUseUrlEn =
+      'https://docs.luckycloud.de/en/data-protection-and-security/luckychat-terms-of-service';
+  static const String termsOfUseUrlDe =
+      'https://docs.luckycloud.de/de/data-protection-and-security/luckychat-terms-of-service';
+  // end
   static bool renderHtml = true;
   static bool hideRedactedEvents = false;
   static bool hideUnknownEvents = true;

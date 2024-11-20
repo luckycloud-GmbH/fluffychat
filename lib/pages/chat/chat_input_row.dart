@@ -273,7 +273,7 @@ class ChatInputRow extends StatelessWidget {
                           borderRadius: BorderRadius.circular(height),
                         ),
                         backgroundColor: theme.colorScheme.onPrimaryContainer,
-                        foregroundColor: Colors.black,
+                        foregroundColor: theme.colorScheme.onSurface,
                         child: const Icon(Icons.send_outlined),
                       ),
               ),

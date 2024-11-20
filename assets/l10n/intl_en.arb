@@ -2813,5 +2813,25 @@
   "pleaseFillOut": "Please fill out",
   "invalidUrl": "Invalid url",
   "addLink": "Add link",
-  "unableToJoinChat": "Unable to join chat. Maybe the other party has already closed the conversation."
+  "unableToJoinChat": "Unable to join chat. Maybe the other party has already closed the conversation.",
+  "termsDialogTitile": "Terms Confirmation",
+  "@termsDialogTitile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termsDialogDesc": "Please confirm the terms of use of luckychat and our terms and conditions.",
+  "@termsDialogDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termsOfUse": "Terms of Use",
+  "@termsOfUse": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termsAndConditions": "Terms and Conditions",
+  "@termsAndConditions": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
