@@ -97,37 +97,7 @@ class ChatListViewBody extends StatelessWidget {
                         title: L10n.of(context).users,
                         icon: const Icon(Icons.group_outlined),
                       ),
-                      AnimatedContainer(
-                        clipBehavior: Clip.hardEdge,
-                        decoration: const BoxDecoration(),
-                        height: userSearchResult == null ||
-                                userSearchResult.results.isEmpty
-                            ? 0
-                            : 106,
-                        duration: FluffyThemes.animationDuration,
-                        curve: FluffyThemes.animationCurve,
-                        child: userSearchResult == null
-                            ? null
-                            : ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: userSearchResult.results.length,
-                                itemBuilder: (context, i) => _SearchItem(
-                                  title:
-                                      userSearchResult.results[i].displayName ??
-                                          userSearchResult
-                                              .results[i].userId.localpart ??
-                                          L10n.of(context).unknownDevice,
-                                  avatar: userSearchResult.results[i].avatarUrl,
-                                  onPressed: () => showAdaptiveBottomSheet(
-                                    context: context,
-                                    builder: (c) => UserBottomSheet(
-                                      profile: userSearchResult.results[i],
-                                      outerContext: context,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                      ),
+                      UserSearchHorizontalList(userSearchResult: userSearchResult),
                     ],
                     if (!controller.isSearchMode && AppConfig.showPresences)
                       GestureDetector(
@@ -319,7 +289,7 @@ class ChatListViewBody extends StatelessWidget {
   }
 }
 
-class PublicRoomsHorizontalList extends StatelessWidget {
+class PublicRoomsHorizontalList extends StatefulWidget {
   const PublicRoomsHorizontalList({
     super.key,
     required this.publicRooms,
@@ -328,8 +298,23 @@ class PublicRoomsHorizontalList extends StatelessWidget {
   final List<PublicRoomsChunk>? publicRooms;
 
   @override
+  _PublicRoomsHorizontalListState createState() =>
+      _PublicRoomsHorizontalListState();
+}
+
+class _PublicRoomsHorizontalListState
+    extends State<PublicRoomsHorizontalList> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final publicRooms = this.publicRooms;
+    final publicRooms = widget.publicRooms;
     return AnimatedContainer(
       clipBehavior: Clip.hardEdge,
       decoration: const BoxDecoration(),
@@ -338,21 +323,91 @@ class PublicRoomsHorizontalList extends StatelessWidget {
       curve: FluffyThemes.animationCurve,
       child: publicRooms == null
           ? null
-          : ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: publicRooms.length,
-              itemBuilder: (context, i) => _SearchItem(
-                title: publicRooms[i].name ??
-                    publicRooms[i].canonicalAlias?.localpart ??
-                    L10n.of(context).group,
-                avatar: publicRooms[i].avatarUrl,
-                onPressed: () => showAdaptiveBottomSheet(
-                  context: context,
-                  builder: (c) => PublicRoomBottomSheet(
-                    roomAlias:
-                        publicRooms[i].canonicalAlias ?? publicRooms[i].roomId,
-                    outerContext: context,
-                    chunk: publicRooms[i],
+          : Scrollbar(
+              controller: _scrollController,
+              thumbVisibility: true, // Ensure the scrollbar is visible
+              child: ListView.builder(
+                controller: _scrollController,
+                scrollDirection: Axis.horizontal,
+                itemCount: publicRooms.length,
+                itemBuilder: (context, i) => _SearchItem(
+                  title: publicRooms[i].name ??
+                      publicRooms[i].canonicalAlias?.localpart ??
+                      L10n.of(context).group,
+                  avatar: publicRooms[i].avatarUrl,
+                  onPressed: () => showAdaptiveBottomSheet(
+                    context: context,
+                    builder: (c) => PublicRoomBottomSheet(
+                      roomAlias: publicRooms[i].canonicalAlias ??
+                          publicRooms[i].roomId,
+                      outerContext: context,
+                      chunk: publicRooms[i],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+    );
+  }
+}
+
+class UserSearchHorizontalList extends StatefulWidget {
+  const UserSearchHorizontalList({
+    super.key,
+    required this.userSearchResult,
+  });
+
+  final SearchUserDirectoryResponse? userSearchResult;
+
+  @override
+  _UserSearchHorizontalList createState() =>
+      _UserSearchHorizontalList();
+}
+
+class _UserSearchHorizontalList
+    extends State<UserSearchHorizontalList> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final userSearchResult = widget.userSearchResult;
+    return AnimatedContainer(
+      clipBehavior: Clip.hardEdge,
+      decoration: const BoxDecoration(),
+      height: userSearchResult == null ||
+              userSearchResult.results.isEmpty
+          ? 0
+          : 106,
+      duration: FluffyThemes.animationDuration,
+      curve: FluffyThemes.animationCurve,
+      child: userSearchResult == null
+          ? null
+          : Scrollbar(
+              controller: _scrollController,
+              thumbVisibility: true,
+              child: ListView.builder(
+                controller: _scrollController,
+                scrollDirection: Axis.horizontal,
+                itemCount: userSearchResult.results.length,
+                itemBuilder: (context, i) => _SearchItem(
+                  title:
+                      userSearchResult.results[i].displayName ??
+                          userSearchResult
+                              .results[i].userId.localpart ??
+                          L10n.of(context).unknownDevice,
+                  avatar: userSearchResult.results[i].avatarUrl,
+                  onPressed: () => showAdaptiveBottomSheet(
+                    context: context,
+                    builder: (c) => UserBottomSheet(
+                      profile: userSearchResult.results[i],
+                      outerContext: context,
+                    ),
                   ),
                 ),
               ),

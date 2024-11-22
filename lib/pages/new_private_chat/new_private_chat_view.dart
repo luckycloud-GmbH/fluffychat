@@ -31,13 +31,13 @@ class NewPrivateChatView extends StatelessWidget {
         leading: const Center(child: BackButton()),
         title: Text(L10n.of(context).newChat),
         backgroundColor: theme.scaffoldBackgroundColor,
-        actions: [
-          TextButton(
-            onPressed:
-                UrlLauncher(context, AppConfig.startChatTutorial).launchUrl,
-            child: Text(L10n.of(context).help),
-          ),
-        ],
+        // actions: [
+        //   TextButton(
+        //     onPressed:
+        //         UrlLauncher(context, AppConfig.startChatTutorial).launchUrl,
+        //     child: Text(L10n.of(context).help),
+        //   ),
+        // ],
       ),
       body: MaxWidthBody(
         withScrolling: false,

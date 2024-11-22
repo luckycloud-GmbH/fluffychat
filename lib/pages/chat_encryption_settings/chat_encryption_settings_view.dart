@@ -32,12 +32,12 @@ class ChatEncryptionSettingsView extends StatelessWidget {
             onPressed: () => context.go('/rooms/${controller.roomId!}'),
           ),
           title: Text(L10n.of(context).encryption),
-          actions: [
-            TextButton(
-              onPressed: () => launchUrlString(AppConfig.encryptionTutorial),
-              child: Text(L10n.of(context).help),
-            ),
-          ],
+          // actions: [
+          //   TextButton(
+          //     onPressed: () => launchUrlString(AppConfig.encryptionTutorial),
+          //     child: Text(L10n.of(context).help),
+          //   ),
+          // ],
         ),
         body: MaxWidthBody(
           child: Column(
