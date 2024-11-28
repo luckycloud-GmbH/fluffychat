@@ -67,6 +67,7 @@ class ChatListView extends StatelessWidget {
                   right: 8.0,
                 ),
                 decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
                   border: Border(
                     bottom: BorderSide(
                       color: Theme.of(context).dividerColor, // Border color

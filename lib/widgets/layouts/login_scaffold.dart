@@ -22,7 +22,7 @@ class LoginScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isMobileMode = enforceMobileMode || !FluffyThemes.isColumnMode(context);
+    // final isMobileMode = enforceMobileMode || !FluffyThemes.isColumnMode(context);
 
     // cache-busting parameter
     final cacheBustParam = AppConfig.version;

@@ -98,13 +98,9 @@ abstract class FluffyThemes {
       ),
       appBarTheme: AppBarTheme(
         toolbarHeight: FluffyThemes.isColumnMode(context) ? 72 : 56,
-        shadowColor: FluffyThemes.isColumnMode(context)
-            ? colorScheme.surfaceContainer.withAlpha(128)
-            : null,
-        surfaceTintColor:
-            FluffyThemes.isColumnMode(context) ? colorScheme.surface : null,
-        backgroundColor:
-            FluffyThemes.isColumnMode(context) ? colorScheme.surface : null,
+        shadowColor: colorScheme.surfaceContainer.withAlpha(128),
+        surfaceTintColor: colorScheme.surface,
+        backgroundColor: colorScheme.surface,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: brightness.reversed,
