@@ -98,7 +98,7 @@ class ChatMembersView extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(99),
                                 ),
                                 hintStyle: TextStyle(
-                                  color: theme.colorScheme.onPrimaryContainer,
+                                  color: theme.colorScheme.onSurface,
                                   fontWeight: FontWeight.normal,
                                 ),
                                 prefixIcon: const Icon(Icons.search_outlined),
