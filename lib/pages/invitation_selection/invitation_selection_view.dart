@@ -54,7 +54,7 @@ class InvitationSelectionView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(99),
                   ),
                   hintStyle: TextStyle(
-                    color: theme.colorScheme.onPrimaryContainer,
+                    color: theme.colorScheme.onSurface,
                     fontWeight: FontWeight.normal,
                   ),
                   hintText: L10n.of(context).inviteContactToGroup(groupName),

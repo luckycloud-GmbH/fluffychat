@@ -380,7 +380,7 @@ class _SpaceViewState extends State<SpaceView> {
                           contentPadding: EdgeInsets.zero,
                           hintText: L10n.of(context).search,
                           hintStyle: TextStyle(
-                            color: theme.colorScheme.onPrimaryContainer,
+                            color: theme.colorScheme.onSurface,
                             fontWeight: FontWeight.normal,
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -388,7 +388,7 @@ class _SpaceViewState extends State<SpaceView> {
                             onPressed: () {},
                             icon: Icon(
                               Icons.search_outlined,
-                              color: theme.colorScheme.onPrimaryContainer,
+                              color: theme.colorScheme.onSurface,
                             ),
                           ),
                         ),
