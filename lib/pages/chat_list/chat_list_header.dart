@@ -63,7 +63,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                 contentPadding: EdgeInsets.zero,
                 hintText: L10n.of(context).searchChatsRooms,
                 hintStyle: TextStyle(
-                  color: theme.colorScheme.onPrimaryContainer,
+                  color: theme.colorScheme.onSurface,
                   fontWeight: FontWeight.normal,
                 ),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -72,13 +72,13 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                         tooltip: L10n.of(context).cancel,
                         icon: const Icon(Icons.close_outlined),
                         onPressed: controller.cancelSearch,
-                        color: theme.colorScheme.onPrimaryContainer,
+                        color: theme.colorScheme.onSurface,
                       )
                     : IconButton(
                         onPressed: controller.startSearch,
                         icon: Icon(
                           Icons.search_outlined,
-                          color: theme.colorScheme.onPrimaryContainer,
+                          color: theme.colorScheme.onSurface,
                         ),
                       ),
                 suffixIcon: controller.isSearchMode && globalSearch

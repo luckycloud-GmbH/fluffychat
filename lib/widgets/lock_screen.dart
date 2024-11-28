@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jovial_svg/jovial_svg.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -88,8 +89,15 @@ class _LockScreenState extends State<LockScreen> {
                       ? Image.network(
                           'assets/assets/info_logo.png?cache_bust=$cacheBustParam',
                         )
-                      : SvgPicture.network(
-                          'assets/assets/info_logo.svg?cache_bust=$cacheBustParam',
+                      : ScalableImageWidget.fromSISource(
+                          si: ScalableImageSource.fromSvgHttpUrl(
+                            Uri.parse(
+                              'assets/assets/info_logo.svg?cache_bust=$cacheBustParam',
+                            ),
+                          ),
+                          onError: (context) => SvgPicture.asset(
+                            'assets/info_logo.svg',
+                          ),
                         ),
                 ),
                 TextField(

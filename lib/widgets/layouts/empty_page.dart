@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jovial_svg/jovial_svg.dart';
 
 class EmptyPage extends StatelessWidget {
   static const double _width = 400;
@@ -36,12 +37,22 @@ class EmptyPage extends StatelessWidget {
                 width: width,
                 height: width,
               )
-            : SvgPicture.network(
-                'assets/assets/logo_transparent.svg?cache_bust=$cacheBustParam',
-                color: theme.colorScheme.surfaceContainerHigh,
+            : SizedBox(
                 width: width,
                 height: width,
-              ),
+                child: ScalableImageWidget.fromSISource(
+                  si: ScalableImageSource.fromSvgHttpUrl(
+                    Uri.parse(
+                      'assets/assets/logo_transparent.svg?cache_bust=$cacheBustParam',
+                    ),
+                  ),
+                  onError: (context) => SvgPicture.asset(
+                    'assets/logo_transparent.svg',
+                    width: width,
+                    height: width,
+                  ),
+                ),
+            ),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jovial_svg/jovial_svg.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -54,11 +55,17 @@ class ChatListView extends StatelessWidget {
             children: [
               // Logo at the top
               Container(
+                alignment: Alignment.centerLeft,
                 constraints: BoxConstraints(
                   maxWidth: MediaQuery.of(context).size.width, // Adjust width as needed
                   maxHeight: 73, // Adjust height as needed
                 ),
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(
+                  top: 8.0,
+                  bottom: 8.0,
+                  left: 20.0,
+                  right: 8.0,
+                ),
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
@@ -67,22 +74,26 @@ class ChatListView extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (AppConfig.logoType == "png")
-                      Image.network(
-                        'assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
-                        fit: BoxFit.contain, // Ensures the image fits within the container
-                        height: 60, // Adjust height as needed
-                      )
-                    else
-                      SvgPicture.network(
-                        'assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
-                        fit: BoxFit.contain, // Ensures the image fits within the container
-                        height: 60, // Adjust height as needed
-                      ),
-                  ],
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width,
+                    maxHeight: 60,
+                  ),
+                  child: AppConfig.logoType == "png" 
+                      ? Image.network(
+                          'assets/assets/banner_transparent.png?cache_bust=$cacheBustParam',
+                        )
+                      : ScalableImageWidget.fromSISource(
+                          alignment: Alignment.centerLeft,
+                          si: ScalableImageSource.fromSvgHttpUrl(
+                            Uri.parse(
+                              'assets/assets/banner_transparent.svg?cache_bust=$cacheBustParam',
+                            ),
+                          ),
+                          onError: (context) => SvgPicture.asset(
+                            'assets/banner_transparent.svg',
+                          ),
+                        ),
                 ),
               ),
               // Main Row Content

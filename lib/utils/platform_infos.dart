@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jovial_svg/jovial_svg.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
@@ -82,18 +83,22 @@ abstract class PlatformInfos {
               width: 64,
               height: 64,
             )
-          : SvgPicture.network(
-              'assets/assets/logo.svg?cache_bust=$cacheBustParam',
+          : SizedBox(
               width: 64,
               height: 64,
-            ),
-      // Image.asset(
-      //   'assets/logo.png',
-      //   key: ValueKey(cacheBustParam),
-      //   width: 64,
-      //   height: 64,
-      //   filterQuality: FilterQuality.medium,
-      // ),
+              child: ScalableImageWidget.fromSISource(
+                si: ScalableImageSource.fromSvgHttpUrl(
+                  Uri.parse(
+                    'assets/assets/logo.svg?cache_bust=$cacheBustParam',
+                  ),
+                ),
+                onError: (context) => SvgPicture.asset(
+                  'assets/logo.svg',
+                  width: 64,
+                  height: 64,
+                ),
+              ),
+          ),
       applicationName: AppConfig.applicationName,
     );
   }
